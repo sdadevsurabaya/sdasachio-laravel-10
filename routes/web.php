@@ -25,6 +25,10 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/category', function () {
+    return view('kategori-produk');
+});
+
 Route::get('/product', function () {
     return view('produk');
 });

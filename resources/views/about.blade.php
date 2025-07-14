@@ -1,77 +1,183 @@
-    <!DOCTYPE html>
-    <html lang="en">
+@extends('layouts.layout')
 
-    <head>
-        {{-- <?php include 'layout/head.php' ?> --}}
-        @include('layout.head')
-        <title>SACHIO</title>
-        <style>
-            * {
-                outline: solid 1px green;
-                outline: solid 1px transparent;
-            }
-
-            .align-center {
-                align-self: center;
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="page ">
-            <header class="page-header">
-                {{-- <?php include 'layout/navbar.php' ?> --}}
-                @include('layout.navbar')
-            </header><!-- end page wrapper -->
-            <main class="page-content">
-                <section>
-                    <div class="container">
-                        <div class="col py-2 text-center">
-                            <h5 class="display-5 fw-medium text-blue">
-                                <span class="">Company</span>
+@section('content')
+    <section>
+        <div class="container">
+            <div class="col py-2 text-center">
+                <h5 class="display-5 fw-medium text-blue">
+                    <span class="">Company</span>
+                </h5>
+                <p class="">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                    nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                </p>
+            </div><!-- end col -->
+        </div>
+    </section>
+    <section class="position-relative" style="background-color: var(--color-default);">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col text-end pe-lg-5">
+                    <span class="fw-medium text-blue display-4">33</span><br>
+                    <span>Years of Experience</span>
+                </div>
+                <div class="col text-start border-start ps-lg-5" style="border-color: #005fb9 !important;">
+                    <span class="fw-medium text-blue display-4">177</span><br>
+                    <span>Employess</span>
+                </div>
+            </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row row-cols-1 row-gap-1">
+                <div class="col">
+                    <div class="d-lg-flex d-block justify-content-between">
+                        <div class="col col-12 col-lg-6">
+                            <div class="ratio ratio-4x3 bg-secondary">
+                                <img src="../assets/img/gambar/banner.png" class="object-fit-cover" alt="">
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col col-12 col-lg-6 ps-5 d-flex flex-column justify-content-center">
+                            <h5 class="display-6" style="color: var(--color-primary)">
+                                Lorem ipsum dolor sit amet
                             </h5>
                             <p class="">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
+                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
+                                sophisticated swaging and crimping.<br><br>
+                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
+                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
+                                sophisticated swaging and crimping.
                             </p>
                         </div><!-- end col -->
+                    </div><!-- end row -->
+                </div>
+                <div class="col">
+                    <div class="d-lg-flex d-block justify-content-between">
+                        <div class="col col-12 col-lg-6 order-2">
+                            <div class="ratio ratio-4x3 bg-secondary">
+                                <img src="../assets/img/gambar/banner-2.jpg" class="object-fit-cover" alt="">
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col col-12 col-lg-6 order-1 ps-5 d-flex flex-column justify-content-center">
+                            <h5 class="display-6" style="color: var(--color-primary)">
+                                ISO 9001:2015
+                            </h5>
+                            <p class="">
+                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
+                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
+                                sophisticated swaging and crimping.<br><br>
+                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
+                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
+                                sophisticated swaging and crimping.
+                            </p>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .icon-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .blue-line {
+            /* width: 20px; */
+            /* height: 80px; */
+            background-color: #0072CE;
+            /* margin-right: 10px; */
+        }
+
+        .border-5 {
+            border-width: 25px !important;
+        }
+
+        .border-primary {
+            border-color: #0072CE !important;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+    <section>
+        <div class="container">
+            <div class="container">
+                <div class="row col-12 mb-5">
+                    <div
+                        class="col-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
+                        <img src="../assets/img/logo/icon_1.svg" class="" height="100" width="100">
                     </div>
-                </section>
-                <section class="mb-0 position-relative" style="background-color: var(--color-default);">
-                    <div class="container py-5">
-                        <div class="row">
-                            <div class="col text-end">
-                                <span class="fw-medium text-blue display-4">33</span><br>
-                                <span>Years of Experience</span>
-                            </div>
-                            <div class="col text-start border-start" style="border-color: #005fb9 !important;">
-                                <span class="fw-medium text-blue display-4">177</span><br>
-                                <span>Employess</span>
-                            </div>
-                        </div>
-                </section>
-            </main><!-- end page content -->
-            <div class="connect bg-blue text-white py-3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6 col-lg-6 align-self-center">
-                            <h4 class="m-0 fw-light">Stay Connected with Us</h4>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3 ms-auto">
-                            <div class="input-group align-items-center">
-                                <input class="form-control border-0 border-1 rounded-0" name="email" placeholder="Masukan alamat email" onmouseover="this.select()">
-                                <button class="btn btn-dark rounded-0 text-white btn-popup" id="btnSub" type="submit">Submit</button>
-                            </div>
-                        </div>
+                    <div class="col-10 ms-auto">
+                        <h5 class="display-6" style="color: var(--color-primary)">
+                            Sophisticated Infrastructure
+                        </h5>
+                        <p class="m-0 text-justify">
+                            Our robust and expansive warehouse empowers us to fulfill orders of
+                            any quantity, whether they are substantial or modest, regardless of the
+                            location. Our extensive dealer network ensures timely product delivery
+                            across the country. The dedication and expertise of our experienced
+                            staff have been instrumental in our remarkable success.
+                        </p>
                     </div>
                 </div>
             </div>
-            <footer class="page-footer">
-                {{-- <?php include 'layout/footbar.php' ?> --}}
-                @include('layout.footbar')
-            </footer><!-- end page footer -->
-        </div><!-- end page -->
-        <script src="../assets/js/script.js"></script>
-    </body>
+            <div class="container">
+                <div class="row col-12 mb-5">
+                    <div
+                        class="col-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
+                        <img src="../assets/img/logo/icon_2.svg" class="ms-4" height="100" width="100">
+                    </div>
+                    <div class="col-10 ms-auto">
+                        <h5 class="display-6" style="color: var(--color-primary)">
+                            Competitive Strengths
+                        </h5>
+                        <span class="m-0 text-justify">
+                            <h5 class="fw-medium">Technical Proficiency</h5>
+                            <p class="mb-3">Supported by a team of skilled and knowledgeable staff.</p>
 
-    </html>
+                            <h5 class="fw-medium">Quality Assurance</h5>
+                            <p class="mb-3">Meeting customer requirements and industry standards consistently.
+                            </p>
+                            <p>
+
+                            </p>
+                            <h5 class="fw-medium">Timely Deliveries</h5>
+                            <p class="mb-3">Ensuring products are delivered promptly every time.</p>
+
+                            <h5 class="fw-medium">Affordable Pricing</h5>
+                            <p class="mb-3">Offering market-friendly prices that provide value for both clients and end
+                                users.</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row col-12 mb-5">
+                    <div
+                        class="col-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
+                        <img src="../assets/img/logo/icon_3.svg" class="" height="100" width="100">
+                    </div>
+                    <div class="col-10 ms-auto">
+                        <h5 class="display-6" style="color: var(--color-primary)">
+                            Customers' Satisfaction
+                        </h5>
+                        <p class="m-0 text-justify">
+                            Our dedicated professionals have built strong relationships with clients by consistently
+                            delivering an
+                            extensive range of economical, high-performing, durable, and safe products. We prioritize
+                            customer
+                            satisfaction, actively seeking and valuing customer feedback. This input helps us enhance
+                            product
+                            quality while ensuring competitive pricing, ultimately bringing immense gratification to clients
+                            across Indonesia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
