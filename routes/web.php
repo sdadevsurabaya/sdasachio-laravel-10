@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Back\Admin\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +33,8 @@ Route::get('/category', function () {
 
 Route::get('/product', function () {
     return view('produk');
+});
+
+Route::prefix('back/admin')->name('back.admin.')->group(function () {
+    Route::resource('product', ProductController::class);
 });

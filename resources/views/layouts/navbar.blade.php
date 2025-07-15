@@ -2,7 +2,7 @@
    <div class="container">
       <h1 class="m-0">
          <a href="index.php" class="navbar-brand d-grid text-decoration-none">
-            <img src="../assets/img/logo/logo-a.svg" width="70%" height="auto" alt="SDA">
+            <img src="/assets/img/logo/logo-a.svg" width="70%" height="auto" alt="SDA">
          </a>
       </h1>
       <button class="navbar-toggler border-0" data-bs-toggle="modal" data-bs-target="#navcol" style="color:#fff;">
@@ -289,7 +289,7 @@
                </li>
                <li class="nav-item ">
                   <a href="https://tokosda.com/" target="_blank" class="nav-link">
-                     <img src="../assets/img/toko-logo.png" style="width: 40%; vertical-align: top;">
+                     <img src="/assets/img/toko-logo.png" style="width: 40%; vertical-align: top;">
                   </a>
                </li>
             </ul>

@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'sku', 'description', 'image', 'category_id', 'parent_id',
+        'name',
+        'sku',
+        'description',
+        'image',
+        'category_id',
+        'parent_id',
     ];
 
     // Relasi ke kategori
@@ -28,5 +33,14 @@ class Product extends Model
     public function children(): HasMany
     {
         return $this->hasMany(Product::class, 'parent_id');
+    }
+
+    protected $casts = [
+        'features' => 'array',
+    ];
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
     }
 }

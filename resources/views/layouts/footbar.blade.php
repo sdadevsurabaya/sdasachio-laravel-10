@@ -2,7 +2,7 @@
    <div class="container py-5">
       <div class="row g-0 row-cols-1 row-gap-4 row-cols-md-auto column-gap-5 justify-content-lg-between">
          <div class="col">
-            <img src="../assets/img/logo/logo-a.svg" width="80%" height="auto" alt="">
+            <img src="/assets/img/logo/logo-a.svg" width="80%" height="auto" alt="">
          </div><!-- end col -->
          <div class="col fw-light">
             <div class="row row-cols-auto gap-5">
@@ -46,7 +46,7 @@
          <div class="row align-items-lg-baseline">
             <div class="col col-12">
                <p class="text-center fw-light mb-0">
-                  &copy; <script src="../assets/js/year.js"></script>, SACHIO All rights reserved.
+                  &copy; <script src="/assets/js/year.js"></script>, SACHIO All rights reserved.
                </p>
             </div><!-- end col -->
          </div><!-- end row -->

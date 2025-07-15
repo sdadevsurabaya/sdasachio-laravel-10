@@ -14,6 +14,7 @@
             align-self: center;
         }
     </style>
+    @yield('css')
 </head>
 
 <body>
@@ -33,7 +34,8 @@
             @include('layouts.footbar')
         </footer><!-- end page footer -->
     </div><!-- end page -->
-    <script src="../assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
+    @yield('scripts')
 </body>
 
 </html>

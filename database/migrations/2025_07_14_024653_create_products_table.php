@@ -13,6 +13,8 @@ return new class extends Migration {
             $table->foreignId('parent_id')->nullable()->constrained('products')->onDelete('cascade'); // subproduk
             $table->string('name');
             $table->string('sku')->nullable(); // kode produk opsional
+            $table->json('features')->nullable(); // disimpan dalam bentuk key-value json
+            $table->string('download_url')->nullable(); // url file download
             $table->text('description')->nullable();
             $table->string('image')->nullable(); // path gambar produk
             $table->timestamps();
