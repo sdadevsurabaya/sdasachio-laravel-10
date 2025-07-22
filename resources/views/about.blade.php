@@ -32,12 +32,12 @@
             <div class="row row-cols-1 row-gap-1">
                 <div class="col">
                     <div class="d-lg-flex d-block justify-content-between">
-                        <div class="col col-12 col-lg-6">
+                        <div class="col col-12 col-lg-6 mb-lg-0 mb-3">
                             <div class="ratio ratio-4x3 bg-secondary">
                                 <img src="../assets/img/gambar/banner.png" class="object-fit-cover" alt="">
                             </div>
                         </div><!-- end col -->
-                        <div class="col col-12 col-lg-6 ps-5 d-flex flex-column justify-content-center">
+                        <div class="col col-12 col-lg-6 ps-lg-5 d-flex flex-column justify-content-center">
                             <h5 class="display-6" style="color: var(--color-primary)">
                                 Lorem ipsum dolor sit amet
                             </h5>
@@ -54,12 +54,12 @@
                 </div>
                 <div class="col">
                     <div class="d-lg-flex d-block justify-content-between">
-                        <div class="col col-12 col-lg-6 order-2">
+                        <div class="col col-12 col-lg-6 order-2 mb-lg-0 mb-3">
                             <div class="ratio ratio-4x3 bg-secondary">
                                 <img src="../assets/img/gambar/banner-2.jpg" class="object-fit-cover" alt="">
                             </div>
                         </div><!-- end col -->
-                        <div class="col col-12 col-lg-6 order-1 ps-5 d-flex flex-column justify-content-center">
+                        <div class="col col-12 col-lg-6 order-1 ps-lg-5 d-flex flex-column justify-content-center">
                             <h5 class="display-6" style="color: var(--color-primary)">
                                 ISO 9001:2015
                             </h5>
@@ -108,11 +108,11 @@
             <div class="container">
                 <div class="row col-12 mb-5">
                     <div
-                        class="col-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
+                        class="col-12 col-lg-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
                         <img src="../assets/img/logo/icon_1.svg" class="" height="100" width="100">
                     </div>
-                    <div class="col-10 ms-auto">
-                        <h5 class="display-6" style="color: var(--color-primary)">
+                    <div class="col-12 col-lg-10 ms-lg-auto">
+                        <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
                             Sophisticated Infrastructure
                         </h5>
                         <p class="m-0 text-justify">
@@ -128,11 +128,11 @@
             <div class="container">
                 <div class="row col-12 mb-5">
                     <div
-                        class="col-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
+                        class="col-12 col-lg-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
                         <img src="../assets/img/logo/icon_2.svg" class="ms-4" height="100" width="100">
                     </div>
-                    <div class="col-10 ms-auto">
-                        <h5 class="display-6" style="color: var(--color-primary)">
+                    <div class="col-12 col-lg-10 ms-auto">
+                        <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
                             Competitive Strengths
                         </h5>
                         <span class="m-0 text-justify">
@@ -158,11 +158,11 @@
             <div class="container">
                 <div class="row col-12 mb-5">
                     <div
-                        class="col-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
+                        class="col-12 col-lg-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
                         <img src="../assets/img/logo/icon_3.svg" class="" height="100" width="100">
                     </div>
-                    <div class="col-10 ms-auto">
-                        <h5 class="display-6" style="color: var(--color-primary)">
+                    <div class="col-12 col-lg-10 ms-auto">
+                        <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
                             Customers' Satisfaction
                         </h5>
                         <p class="m-0 text-justify">

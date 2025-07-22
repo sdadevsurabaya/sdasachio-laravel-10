@@ -8,4 +8,5 @@
 <link rel="stylesheet" href="/assets/css/navbar.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="/assets/vendors/jquery-3.7.1.min.js.js"></script>
+<script src="/assets/js/script.js"></script>
 <script src="/assets/vendors/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>

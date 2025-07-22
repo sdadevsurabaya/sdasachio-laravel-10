@@ -19,7 +19,7 @@
 
 <body>
     <div class="page ">
-        <header class="page-header">
+        <header class="page-header sticky-top">
             @include('layouts.navbar')
         </header><!-- end page wrapper -->
         <main class="page-content">
@@ -35,6 +35,9 @@
         </footer><!-- end page footer -->
     </div><!-- end page -->
     <script src="assets/js/script.js"></script>
+    <script>
+       $('#nav-home').addClass('active');
+   </script>
     @yield('scripts')
 </body>
 

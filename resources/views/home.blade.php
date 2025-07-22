@@ -7,7 +7,7 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
                 <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -19,16 +19,14 @@
                             <div class="col-lg-6">
                                 <p class="fs-2 text-blue">Pneumatic Components Air Source Treatment Frl Unit</p>
                                 <p class="text-justify mb-5">
-                                    Kami terus mengembangkan relasi bisnis dan terbuka untuk hubungan potensial
-                                    yang saling
-                                    menguntungkan di dalam lingkup lokal maupun internasional. Jika Anda
-                                    memiliki tujuan dan misi yang
-                                    sama, silakan hubungi kami. Setiap ide dan masukan dalam pengembangan bisnis
-                                    akan sangat bernilai,
+                                    Kami terus mengembangkan relasi bisnis dan terbuka untuk hubungan potensial yang saling
+                                    menguntungkan di dalam lingkup lokal maupun internasional. Jika Anda memiliki tujuan dan
+                                    misi yang
+                                    sama, silakan hubungi kami. Setiap ide dan masukan dalam pengembangan bisnis akan sangat
+                                    bernilai,
                                     dan kami harap dapat bekerjasama dengan Anda segera.
                                 </p>
-                                <a href="#" class="btn btn-outline-dark  btn-max rounded-0">Hubungi
-                                    Kami</a>
+                                <a href="#" class="btn btn-outline-dark  btn-max rounded-0">Hubungi Kami</a>
                             </div>
                         </div>
                     </div>
@@ -61,9 +59,9 @@
                                     <h5 class="fw-medium text-blue ">Pneumatic Cylinders</h5>
                                 </div>
                                 <div class="desc">
-                                    <p class="fw-light">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                        nonummy nibh euismod tincidunt ut laoreet dolor
+                                    <p class="fw-normal">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                        euismod tincidunt ut laoreet dolor
                                     </p>
                                 </div>
                             </div>
@@ -82,9 +80,9 @@
                                     <h5 class="fw-medium text-blue ">Air Source Treatment Unit</h5>
                                 </div>
                                 <div class="desc">
-                                    <p class="fw-light">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                        nonummy nibh euismod tincidunt ut laoreet dolor
+                                    <p class="fw-normal">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                        euismod tincidunt ut laoreet dolor
                                     </p>
                                 </div>
                             </div>
@@ -103,9 +101,9 @@
                                     <h5 class="fw-medium text-blue ">Directional Valve</h5>
                                 </div>
                                 <div class="desc">
-                                    <p class="fw-light">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                        nonummy nibh euismod tincidunt ut laoreet dolor
+                                    <p class="fw-normal">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                        euismod tincidunt ut laoreet dolor
                                     </p>
                                 </div>
                             </div>
@@ -136,13 +134,13 @@
                             </div>
                         </div><!-- end col -->
                         <div class="col col-12 col-lg-5 ps-5 d-flex bg-gray flex-column justify-content-center">
-                            <h5 class="display-6 fw-light" style="color: var(--color-primary)">
+                            <h5 class="display-6 fw-normal" style="color: var(--color-primary)">
                                 Hose Assembly
                             </h5>
-                            <p class="fw-light">
-                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly
-                                solutions for hydraulic, pneumatic and industrial applications. This specialized
-                                facility is equipped with sophisticated swaging and crimping.
+                            <p class="">
+                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
+                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
+                                sophisticated swaging and crimping.
                             </p>
                         </div><!-- end col -->
                     </div><!-- end row -->

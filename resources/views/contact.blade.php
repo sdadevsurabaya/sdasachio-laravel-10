@@ -9,7 +9,7 @@
             <p></p>
             <div class="row gx-lg-5 row-gap-5 justify-content-lg-between">
                 <!-- end col -->
-                <div class="col col-lg-6 pe-0 pe-lg-5">
+                <div class="col col-12 col-lg-6 pe-lg-5">
                     <form action="contact_process.php" method="POST" class="d-flex flex-column row-gap-4"
                         style="max-width: calc(36rem + 2vw);">
 
@@ -39,12 +39,12 @@
                         </div>
 
                         <!-- <div class="form-group">
-                                            <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
-                                                ↻
-                                            </button>
-                                            <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
-                                        </div> -->
+                                                <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
+                                                    ↻
+                                                </button>
+                                                <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
+                                            </div> -->
 
                         <div class="form-group pt-3">
                             <button class="btn btn-dark btn-lg text-white rounded-0 w-100">Submit</button>
@@ -53,7 +53,7 @@
 
                 </div><!-- end col -->
 
-                <div class="col col-lg-6 border-start ps-lg-5">
+                <div class="col col-12 col-lg-6 border-start ps-lg-5">
                     <h5 class="fs-3 mb-4 text-blue">
                         <span class="fw-medium">Address</span>
                     </h5>
@@ -109,30 +109,31 @@
     </section>
     <section>
         <div class="container">
-            <div class="d-flex flex-column flex-md-row vh-100" style="max-height:400px;">
-                <div class="bg-blue d-flex align-items-center justify-content-center p-4 col-md-5">
-                    <div class="bg-white p-4 w-100" style="max-width: 400px;">
+            <div class="d-lg-flex d-block justify-content-between">
+                <div class="col col-md-5 bg-blue align-items-center justify-content-center p-4">
+                    <div class="bg-white p-4">
                         <select class="form-select mb-4" aria-label="Select location">
-                            <option selected>Jakarta</option>
+                            <option selected="">Jakarta</option>
                         </select>
                         <div>
                             <p class="fw-bold mb-2">PT. SACHIO INDONESIA</p>
                             <p class="mb-0" style="line-height:1.4;">
-                                Jakarta Branch:<br />
-                                Komp. Puri Mutiara Blok BD No. 8<br />
-                                Jl. Raya Griya Utama<br />
-                                Sunter Agung, Kec. Tanjung Priok<br />
-                                Jakarta Utara 14350 - Indonesia<br />
+                                Jakarta Branch:<br>
+                                Komp. Puri Mutiara Blok BD No. 8<br>
+                                Jl. Raya Griya Utama<br>
+                                Sunter Agung, Kec. Tanjung Priok<br>
+                                Jakarta Utara 14350 - Indonesia<br>
                                 T: +62 21 3888 8800
                             </p>
                         </div>
                         <button type="button" class="btn btn-dark text-white w-100 mt-4 py-3">Get Direction</button>
                     </div>
                 </div>
-                <div class="col-md-7 p-0">
-                    <img src="https://storage.googleapis.com/a1aa/image/bcf9c4f0-c1cd-414f-bdd9-2de0a0db0ed8    .jpg"
-                        alt="Map with red and gray location pins on a light gray street map background"
-                        class="img-fluid h-100 w-100 object-fit-cover" style="max-height:400px;" />
+                <div class="col col-12 col-lg-7 p-lg-4 mb-sm-0">
+                    <div class="ratio ratio-16x9">
+                        <img src="https://storage.googleapis.com/a1aa/image/bcf9c4f0-c1cd-414f-bdd9-2de0a0db0ed8.jpg"
+                            class="object-fit-cover" alt="">
+                    </div>
                 </div>
             </div>
         </div>

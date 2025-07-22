@@ -2,20 +2,20 @@
    <div class="container py-5">
       <div class="row g-0 row-cols-1 row-gap-4 row-cols-md-auto column-gap-5 justify-content-lg-between">
          <div class="col">
-            <img src="/assets/img/logo/logo-a.svg" width="80%" height="auto" alt="">
+            <img src="../assets/img/logo/logo-a.svg" height="auto" alt="logo sachio" style="width: 15rem;">
          </div><!-- end col -->
          <div class="col fw-light">
             <div class="row row-cols-auto gap-5">
                <div class="col fw-light">
                   <ul class="list-unstyled text-capitalize fs-6 mb-0 d-flex flex-column gap-2">
-                     <li><a href="about.php">About SDA</a></li>
-                     <li><a href="/index.php#our-products">products</a></li>
-                     <li><a href="industries.php">industries</a></li>
+                     <li><a href="index.php">Home</a></li>
+                     <li><a href="about.php">About SACHIO</a></li>
+                     <li><a href="produk.php">Products</a></li>
                   </ul>
                </div><!-- end col -->
                <div class="col fw-light">
                   <ul class="list-unstyled text-capitalize fs-6 mb-0 d-flex flex-column gap-2">
-                     <li><a href="contact.php">contact us</a></li>
+                     <li><a href="contact.php">Contact</a></li>
                   </ul>
                </div><!-- end col -->
             </div><!-- end row -->
@@ -46,7 +46,7 @@
          <div class="row align-items-lg-baseline">
             <div class="col col-12">
                <p class="text-center fw-light mb-0">
-                  &copy; <script src="/assets/js/year.js"></script>, SACHIO All rights reserved.
+                  &copy; <script src="../assets/js/year.js"></script>, SACHIO All rights reserved.
                </p>
             </div><!-- end col -->
          </div><!-- end row -->
