@@ -1,29 +1,34 @@
 <nav class="navbar navbar-expand-lg py-3 position-absolute top-0 start-0 end-0 z-3">
    <div class="container">
       <h1 class="m-0">
-         <a href="index.php" class="navbar-brand d-grid text-decoration-none">
+         <a href="{{ url('/') }}" class="navbar-brand d-grid text-decoration-none">
             <img src="../assets/img/logo/logo-a.svg" width="70%" height="auto" alt="SDA">
          </a>
       </h1>
       <button class="navbar-toggler border-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="color:#fff;">
          <span class="navbar-toggler-icon"></span>
       </button>
+      <style>
+          .p-5{
+              padding : 2rem!important;
+          }
+      </style>
       <div class="navbar-collapse collapse" id="#">
          <ul class="navbar-nav text-white text-capitalize ms-auto bg-blue">
             <li class="nav-item">
-               <a href="index.php" class="nav-link p-3" id="nav-home">Home</a>
+               <a href="{{ url('/') }}" class="nav-link py-1 p-5" id="nav-home">Home</a>
             </li>
             <li class="nav-item">
-               <a href="about.php" class="nav-link p-3" id="nav-about">About Sachio</a>
+               <a href="{{ url('/about') }}" class="nav-link py-1 p-4" id="nav-about">About Sachio</a>
             </li>
             <li class="nav-item position-relative">
-               <a class="nav-link p-3" href="produk.php" id="nav-produk">Products</a>
+               <a class="nav-link py-1 p-4" href="{{ url('/product') }}" id="nav-produk">Products</a>
             </li>
             <li class="nav-item">
-               <a href="contact.php" class="nav-link p-3" id="nav-contact">contact</a>
+               <a href="{{ url('/contact') }}" class="nav-link py-1 p-4" id="nav-contact">contact</a>
             </li>
             <li class="nav-item" style="align-self: center;">
-               <a href="#" target="_blank" class="nav-link p-3" id="nav-wtb">
+               <a href="#" target="_blank" class="nav-link py-1 p-5" id="nav-wtb">
                   <i class="fa-solid fa-magnifying-glass"></i>
                </a>
             </li>
@@ -89,27 +94,27 @@
                <div class="tab-kontent" id="nav-pills-tabContent">
                   <div class="tab-pane fade show active" id="nav-content-cylinders" role="tabpanel" aria-labelledby="nav-tab-cylinders" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid" alt="Pneumatic Cylinders">
+                        <img src="../assets/img/gambar/image-home-pneumatics.webp" class="img-fluid" alt="Pneumatic Cylinders">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-solenoid" role="tabpanel" aria-labelledby="nav-tab-solenoid" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="../assets/img/gambar/image-home-directionalvalves.png" class="img-fluid" alt="Fluid Solenoid Valve">
+                        <img src="../assets/img/gambar/image-home-directionalvalves.webp" class="img-fluid" alt="Fluid Solenoid Valve">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-air" role="tabpanel" aria-labelledby="nav-tab-air" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="../assets/img/gambar/image-home-airsource.png" class="img-fluid" alt="Air Source Treatment Units">
+                        <img src="../assets/img/gambar/image-home-airsource.webp" class="img-fluid" alt="Air Source Treatment Units">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-accessories" role="tabpanel" aria-labelledby="nav-tab-accessories" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="../assets/img/gambar/image-home-directionalvalves.png" class="img-fluid" alt="Pneumatic Accessories">
+                        <img src="../assets/img/gambar/image-home-directionalvalves.webp" class="img-fluid" alt="Pneumatic Accessories">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-directional" role="tabpanel" aria-labelledby="nav-tab-directional" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="../assets/img/gambar/image-home-airsource.png" class="img-fluid" alt="Directional Valves">
+                        <img src="../assets/img/gambar/image-home-airsource.webp" class="img-fluid" alt="Directional Valves">
                      </div>
                   </div>
                </div>
@@ -127,26 +132,26 @@
    <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php">Home</a>
+            <a class="nav-link" aria-current="page" href="{{ url('/') }}">Home</a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="about.php">About Sachio</a>
+            <a class="nav-link" href="{{ url('/about') }}">About Sachio</a>
          </li>
          <li class="nav-item">
             <a class="nav-link" href="#mobileSachio" data-bs-toggle="collapse" data-bs-parent="#offcanvasNavbar">
                Products</a>
             <div class="collapse" id="mobileSachio">
                <ul class="navbar-nav ps-4 mb-3">
-                  <li class="nav-item"> <a href="#" class="nav-link" id="nav-about-mobile">Pneumatic Cylinders</a></li>
-                  <li class="nav-item"> <a href="#" class="nav-link">Fluid Solenoid Valve</a></li>
-                  <li class="nav-item"> <a href="#" class="nav-link">Air Source Treatment Units</a></li>
-                  <li class="nav-item"> <a href="#" class="nav-link">Pneumatic Accessories</a></li>
-                  <li class="nav-item"> <a href="#" class="nav-link">Directional Valves</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link" id="nav-about-mobile">Pneumatic Cylinders</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Fluid Solenoid Valve</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Air Source Treatment Units</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Pneumatic Accessories</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Directional Valves</a></li>
                </ul>
             </div>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="contact.php">Contact</a>
+            <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
          </li>
 
       </ul>
