@@ -17,24 +17,34 @@
         <div class="container">
             <div class="row">
                 {{-- Gambar --}}
-                <div class="col-md-6">
-                    @php
+                @php
                         $images = $product->images;
                         $mainImage = $images->first();
                     @endphp
+                <div class="col-md-6 {{ !$mainImage ? 'd-none' : '' }}">
+
 
                     <div class="text-center mb-3">
-                        <img id="main-image" src="{{ asset('storage/' . $mainImage->image) }}" class="img-fluid"
-                            style="max-height: 300px;">
+                        @if ($mainImage && $mainImage->image)
+                            <img id="main-image" src="{{ asset('storage/' . $mainImage->image) }}" class="img-fluid"
+                                style="max-height: 300px;">
+                        @else
+                            <img id="main-image" src="{{ asset('images/no-image.png') }}" class="img-fluid"
+                                style="max-height: 300px;">
+                        @endif
                     </div>
 
-                    <div class="d-flex justify-content-center gap-2">
-                        @foreach ($images as $img)
-                            <img src="{{ asset('storage/' . $img->image) }}" class="img-thumbnail"
-                                style="width: 80px; height: 80px; cursor: pointer;"
-                                onclick="changeMainImage('{{ asset('storage/' . $img->image) }}')">
-                        @endforeach
-                    </div>
+                    @if ($images && $images->count())
+                        <div class="d-flex justify-content-center gap-2">
+                            @foreach ($images as $img)
+                                @if ($img->image)
+                                    <img src="{{ asset('storage/' . $img->image) }}" class="img-thumbnail"
+                                        style="width: 80px; height: 80px; cursor: pointer;"
+                                        onclick="changeMainImage('{{ asset('storage/' . $img->image) }}')">
+                                @endif
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
 
                 {{-- Deskripsi --}}
