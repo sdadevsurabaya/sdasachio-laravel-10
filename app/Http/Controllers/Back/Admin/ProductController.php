@@ -1,11 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\Back\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -38,11 +39,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name'        => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
-            'sku' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'sku'         => 'nullable|string',
+            'image'       => 'nullable|image|max:2048',
         ]);
 
         $imagePath = null;
@@ -51,13 +52,12 @@ class ProductController extends Controller
         }
 
         $product = Product::create([
-            'name' => $request->name,
-            'sku' => $request->sku,
+            'name'        => $request->name,
+            'sku'         => $request->sku,
             'category_id' => $request->category_id,
             'description' => $request->description,
-            'image' => $imagePath,
+            'image'       => $imagePath,
         ]);
-
 
         // Upload images
         if ($request->hasFile('images')) {
@@ -72,10 +72,9 @@ class ProductController extends Controller
             ->combine($request->input('feature_values', []))
             ->filter();
 
-        $product->features = $features;
+        $product->features     = $features;
         $product->download_url = $request->input('download_url');
         $product->save();
-
 
         return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil ditambahkan.');
     }
@@ -88,43 +87,65 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        // 1. VALIDASI DATA
         $request->validate([
-            'name' => 'required|string',
-            'category_id' => 'required|exists:categories,id',
-            'description' => 'nullable|string',
-            'sku' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'name'          => 'required|string|max:255',
+            'category_id'   => 'required|exists:categories,id',
+            'description'   => 'nullable|string',
+            'sku'           => 'nullable|string',
+            'download_url'  => 'nullable|string',
+            // Validasi untuk gambar galeri
+            'images'        => 'nullable|array',
+            'images.*'      => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Validasi untuk setiap gambar baru
+            // Validasi untuk gambar yang akan dihapus
+            'delete_images'   => 'nullable|array',
+            'delete_images.*' => 'integer|exists:product_images,id' // Pastikan ID-nya ada di database
         ]);
 
-        // if ($request->hasFile('image')) {
-        //     $imagePath = $request->file('image')->store('products', 'public');
-        //     $product->image = $imagePath;
-        // }
+        // 2. HAPUS GAMBAR LAMA (DARI GALERI) YANG DICENTANG
+        if ($request->has('delete_images')) {
+            foreach ($request->delete_images as $imageId) {
+                $imageToDelete = ProductImage::find($imageId);
+                if ($imageToDelete) {
+                    // Karena Anda menyimpan di folder public, kita gunakan File::delete
+                    // public_path() akan mengarahkan ke folder 'public' di root proyek Anda
+                    $filePath = public_path($imageToDelete->image);
+                    if (File::exists($filePath)) {
+                        File::delete($filePath);
+                    }
 
-        // Upload images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $img) {
-                $path = $img->store('products', 'public');
-                $product->images()->create(['image' => $path]);
+                    // Hapus record dari database
+                    $imageToDelete->delete();
+                }
             }
         }
 
-         // Simpan fitur
+        // 3. UPLOAD GAMBAR BARU (KE GALERI)
+        // Ini adalah blok kode Anda, sudah benar.
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $img) {
+                $imageName = time() . '_' . $img->hashName();
+                $destinationPath = 'storage/products';
+                $img->move($destinationPath, $imageName);
+                $dbPath = 'products/' . $imageName;
+
+                // Simpan path ke relasi 'images' milik produk
+                $product->images()->create(['image' => $dbPath]);
+            }
+        }
+
+        // 4. UPDATE DATA UTAMA PRODUK
+        $productData = $request->only(['name', 'sku', 'category_id', 'description', 'download_url']);
+
+        // Kelola fitur, kode Anda sudah bagus
         $features = collect($request->input('feature_keys', []))
             ->combine($request->input('feature_values', []))
             ->filter();
 
-        $product->features = $features;
-        $product->download_url = $request->input('download_url');
-        // $product->save();
+        $productData['features'] = $features;
 
-        $product->update([
-            'name' => $request->name,
-            'sku' => $request->sku,
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'image' => $product->image,
-        ]);
+        // Lakukan update data produk
+        $product->update($productData);
 
         return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil diperbarui.');
     }
