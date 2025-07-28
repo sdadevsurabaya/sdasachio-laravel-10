@@ -272,7 +272,31 @@
 
 
 
-                <button type="submit" class="btn btn-primary">Update Produk</button>
+                {{-- <button type="submit" class="btn btn-primary">Update Produk</button> --}}
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div>
+                        @if ($prevProductId)
+                            <a href="{{ url('back/admin/product/' . $prevProductId . '/edit') }}"
+                                class="btn btn-outline-secondary">
+                                &larr; Previous
+                            </a>
+                        @endif
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary">Update Produk ({{ $product->sku }})</button>
+                    </div>
+
+                    <div>
+                        @if ($nextProductId)
+                            <a href="{{ url('back/admin/product/' . $nextProductId . '/edit') }}"
+                                class="btn btn-outline-secondary">
+                                Next &rarr;
+                            </a>
+                        @endif
+                    </div>
+                </div>
+
             </form>
         </div>
     </section>

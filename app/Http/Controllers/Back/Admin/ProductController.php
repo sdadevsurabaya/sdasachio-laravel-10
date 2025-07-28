@@ -19,7 +19,8 @@ class ProductController extends Controller
                 $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('sku', 'like', '%' . $search . '%');
             })
-            ->latest()
+            // ->latest()
+            ->orderBy('id', 'asc') // ganti dari ->latest() menjadi ->orderBy('id', 'asc')
             ->paginate(10);
 
         return view('back.admin.product.index', compact('products', 'search'));
@@ -82,7 +83,12 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('back.admin.product.edit', compact('product', 'categories'));
+
+        $prevProductId = Product::where('id', '<', $product->id)->max('id');
+        $nextProductId = Product::where('id', '>', $product->id)->min('id');
+
+        return view('back.admin.product.edit', compact('product', 'categories', 'prevProductId', 'nextProductId'));
+        // return view('back.admin.product.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, Product $product)
@@ -138,6 +144,7 @@ class ProductController extends Controller
         $productData = $request->only(['name', 'sku', 'category_id', 'description', 'download_url']);
 
         // Kelola fitur, kode Anda sudah bagus
+        // Simpan fitur
         $features = collect($request->input('feature_keys', []))
             ->combine($request->input('feature_values', []))
             ->filter();
@@ -147,7 +154,9 @@ class ProductController extends Controller
         // Lakukan update data produk
         $product->update($productData);
 
-        return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil diperbarui.');
+        // return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('back.admin.product.edit', $product->id)->with('success', 'Produk berhasil diperbarui.');
+
     }
 
     public function destroy(Product $product)
