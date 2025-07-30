@@ -13,10 +13,24 @@ class FrontProductController extends Controller
 {
     public function index(Request $request)
     {
-        // $products = Product::all();
-        $products = Product::paginate(10);
-        return view('produk', compact('products'));
+        // Ambil produk dengan pagination
+        $products = Product::with('images')->paginate(10);
+
+        // Ambil semua grup unik
+        $groupedProducts = Product::whereNotNull('group_product')
+            ->select('group_product')
+            ->distinct()
+            ->pluck('group_product');
+
+        // Ambil semua produk yang termasuk dalam grup
+        $subGroups = Product::whereIn('group_product', $groupedProducts)
+            ->orderBy('group_product')
+            ->get()
+            ->groupBy('group_product');
+
+        return view('produk', compact('products', 'subGroups'));
     }
+
 
     public function showInCategory($slugcategory, $slugproduct)
     {

@@ -57,7 +57,7 @@
             <div class="border-bottom">
                 <div class="row">
                     <div class="col col-12 col-lg-auto align-self-center mb-lg-0 mb-3 " style="width: 265px;">
-                        <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid" alt="Pneumatics">
+                        {{-- <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid" alt="Pneumatics"> --}}
                     </div>
                     <div class="col col-12 col-lg">
                         <h5 class="display-lg-4 fs-2 text-blue">
@@ -133,21 +133,54 @@
                             @foreach ($products as $product)
                                 <div class="row mb-3">
                                     <div class="col-4 col-lg-2 align-self-center">
-                                        <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid"
-                                            alt="Pneumatics">
+                                        {{-- <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid"
+                                            alt="Pneumatics"> --}}
+                                        @php
+                                            $mainImage = $product->images->first();
+                                        @endphp
+                                        <img src="{{ $mainImage ? asset('storage/' . $mainImage->image) : asset('assets/img/default.png') }}"
+                                            class="img-fluid" alt="{{ $product->name }}">
+
                                     </div>
                                     <div class="col-8 col-lg-10">
                                         <h5 class="text-blue">
                                             <span class="fw-normal">{{ $product->name }}</span>
                                         </h5>
                                         <div class="col py-2">
-                                            <p class="text-justify">
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                                nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                            </p>
+                                            @php
+                                                $features = is_array($product->features)
+                                                    ? $product->features
+                                                    : json_decode($product->features, true);
+                                            @endphp
+
+                                            @if ($features)
+                                                <ul class="mb-2">
+                                                    @foreach ($features as $key => $value)
+                                                        <li><strong>{{ $key }}:</strong> {{ $value }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                            @if ($product->group_product && isset($subGroups[$product->group_product]))
+                                                <div class="mb-2">
+                                                    <label class="form-label fw-semibold">Subordinate Category</label>
+
+                                                    <select class="form-select" onchange="location = this.value;">
+                                                        <option selected disabled>Choose sub series</option>
+
+                                                        @foreach ($subGroups[$product->group_product] as $sub)
+                                                            <option>
+                                                                {{-- value="{{ route('produk.detail', ['slugcategory' => $sub->category->slug, 'slugproduct' => $sub->slug]) }}"> --}}
+                                                                {{ $sub->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
                                         </div><!-- end col -->
                                     </div>
                                 </div>
+                                <hr>
                             @endforeach
                         </div>
                         <div class="mt-3 justify-content-center d-flex">
