@@ -124,15 +124,12 @@
                                 </div>
                             </a>
                         </button>
-
                     </div>
                 </div>
                 <div class="col col-12 col-lg">
                     <div class="tab-kontent tab-kontent" id="v-pills-tabContent">
                         <div class="tab-pane fade show active text-dark" id="pills-pneumatic" role="tabpanel"
                             aria-labelledby="pills-pneumatic-tab" tabindex="0">
-
-
                             @foreach ($products as $product)
                                 <div class="row mb-3">
                                     <div class="col-4 col-lg-2 align-self-center">
@@ -152,13 +149,10 @@
                                     </div>
                                 </div>
                             @endforeach
-
-
                         </div>
-                        <div class="mt-4">
-                            {{ $products->links() }}
+                        <div class="mt-3 justify-content-center d-flex">
+                            {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
                         </div>
-
                         <div class="tab-pane fade text-dark" id="pills-solenoid" role="tabpanel"
                             aria-labelledby="pills-solenoid-tab" tabindex="0">
                             Konten untuk Fluid Solenoid Valve
