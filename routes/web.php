@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\FrontCategoryController;
+use App\Http\Controllers\Front\FrontProductController;
 use App\Http\Controllers\Back\Admin\ProductController;
 
 
@@ -27,13 +29,15 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/category', function () {
-    return view('kategori-produk');
-});
+Route::get('/category', [FrontCategoryController::class, 'index'])->name('category.index');
 
-Route::get('/product', function () {
-    return view('produk');
-});
+// Route untuk detail kategori
+Route::get('/category/{slugcategory}', [FrontCategoryController::class, 'show'])->name('category.show');
+
+// Route untuk detail produk dalam kategori
+Route::get('/category/{slugcategory}/{slugproduct}', [FrontProductController::class, 'showInCategory'])->name('product.showInCategory');
+
+Route::get('/product', [FrontProductController::class, 'index'])->name('product.index');
 
 Route::prefix('back/admin')->name('back.admin.')->group(function () {
     Route::resource('product', ProductController::class);

@@ -131,24 +131,34 @@
                     <div class="tab-kontent tab-kontent" id="v-pills-tabContent">
                         <div class="tab-pane fade show active text-dark" id="pills-pneumatic" role="tabpanel"
                             aria-labelledby="pills-pneumatic-tab" tabindex="0">
-                            <div class="row">
-                                <div class="col-4 col-lg-2 align-self-center">
-                                    <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid"
-                                        alt="Pneumatics">
+
+
+                            @foreach ($products as $product)
+                                <div class="row mb-3">
+                                    <div class="col-4 col-lg-2 align-self-center">
+                                        <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid"
+                                            alt="Pneumatics">
+                                    </div>
+                                    <div class="col-8 col-lg-10">
+                                        <h5 class="text-blue">
+                                            <span class="fw-normal">{{ $product->name }}</span>
+                                        </h5>
+                                        <div class="col py-2">
+                                            <p class="text-justify">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                                nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                            </p>
+                                        </div><!-- end col -->
+                                    </div>
                                 </div>
-                                <div class="col-8 col-lg-10">
-                                    <h5 class="text-blue">
-                                        <span class="fw-normal">Our Product Line</span>
-                                    </h5>
-                                    <div class="col py-2">
-                                        <p class="text-justify">
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                        </p>
-                                    </div><!-- end col -->
-                                </div>
-                            </div>
+                            @endforeach
+
+
                         </div>
+                        <div class="mt-4">
+                            {{ $products->links() }}
+                        </div>
+
                         <div class="tab-pane fade text-dark" id="pills-solenoid" role="tabpanel"
                             aria-labelledby="pills-solenoid-tab" tabindex="0">
                             Konten untuk Fluid Solenoid Valve
