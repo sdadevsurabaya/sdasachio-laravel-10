@@ -1,5 +1,26 @@
 @extends('layouts.layout')
+<style>
+    .item .title {
+        font-size: 1.2rem;
+    }
 
+    .item ul li {
+        font-size: 0.9rem;
+        list-style-type: disc;
+    }
+
+    .item .select {
+        font-size: 0.9rem
+    }
+    ol, ul {
+        padding-left: 1.3rem!important;
+    }
+
+    ::marker {
+        color: #005fb9;
+        font-size: 1.2rem
+    }
+</style>
 @section('content')
     <section>
         <div class="container">
@@ -140,13 +161,10 @@
                                         @endphp
                                         <img src="{{ $mainImage ? asset('storage/' . $mainImage->image) : asset('assets/img/default.png') }}"
                                             class="img-fluid" alt="{{ $product->name }}">
-
                                     </div>
                                     <div class="col-8 col-lg-10">
-                                        <h5 class="text-blue">
-                                            <span class="fw-normal">{{ $product->name }}</span>
-                                        </h5>
-                                        <div class="col py-2">
+                                        <div class="col py-2 item d-flex justify-content-between">
+
                                             @php
                                                 $features = is_array($product->features)
                                                     ? $product->features
@@ -154,14 +172,20 @@
                                             @endphp
 
                                             @if ($features)
-                                                <ul class="mb-2">
-                                                    @foreach ($features as $key => $value)
-                                                        <li><strong>{{ $key }}:</strong> {{ $value }}</li>
-                                                    @endforeach
-                                                </ul>
+                                                <div class="div">
+                                                    <h5 class="title text-blue">
+                                                        <span class="fw-normal">{{ $product->name }}</span>
+                                                    </h5>
+                                                    <ul class="mb-2">
+                                                        @foreach ($features as $key => $value)
+                                                            <li><strong>{{ $key }}:</strong> {{ $value }}
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             @endif
                                             @if ($product->group_product && isset($subGroups[$product->group_product]))
-                                                <div class="mb-2">
+                                                <div class="select mb-2 ">
                                                     <label class="form-label fw-semibold">Subordinate Category</label>
 
                                                     <select class="form-select" onchange="location = this.value;">
