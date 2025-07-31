@@ -185,7 +185,7 @@
                                                 </div>
                                             @endif
                                             @if ($product->group_product && isset($subGroups[$product->group_product]))
-                                                <div class="select mb-2 ">
+                                                <div class="col-3 select mb-2 ">
                                                     <label class="form-label fw-semibold">Subordinate Category</label>
 
                                                     <select class="form-select" onchange="location = this.value;">
@@ -207,7 +207,7 @@
                                 <hr>
                             @endforeach
                         </div>
-                        <div class="mt-3 justify-content-center d-flex">
+                        <div class="mt-5 justify-content-center d-flex">
                             {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
                         </div>
                         <div class="tab-pane fade text-dark" id="pills-solenoid" role="tabpanel"
