@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 gx-3 row-gap-3 gx-xl-4">
                 <div class="col">
-                    <a href="produk.php" class="text-decoration-none">
+                    <a href="{{ url('/category/pneumatic_cylinders') }}" class="text-decoration-none">
                         <div class="card custom-card border-0 rounded-0">
                             <div class="card-body">
                                 <h5 class="card-title">Pneumatic Cylinders</h5>
@@ -35,7 +35,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="produk.php" class="text-decoration-none">
+                    <a href="{{ url('/category/air_soruce_treatment_units') }}" class="text-decoration-none">
                         <div class="card border-0 custom-card rounded-0">
                             <div class="card-body">
                                 <h5 class="card-title">Fluid Solenoid Valve</h5>
@@ -44,7 +44,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="produk.php" class="text-decoration-none ">
+                    <a href="{{ url('/category/directional_valves') }}" class="text-decoration-none ">
                         <div class="card border-0 custom-card rounded-0">
                             <div class="card-body">
                                 <h5 class="card-title">Air Source Treatment Units</h5>
@@ -53,7 +53,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="produk.php" class="text-decoration-none">
+                    <a href="{{ url('/category/fluid_solenoid_valve') }}" class="text-decoration-none">
                         <div class="card border-0 custom-card rounded-0">
                             <div class="card-body">
                                 <h5 class="card-title">Pneumatic Accessories</h5>
@@ -62,7 +62,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="produk.php" class="text-decoration-none">
+                    <a href="{{ url('/category/pneumatic_accessories') }}" class="text-decoration-none">
                         <div class="card border-0 custom-card rounded-0">
                             <div class="card-body">
                                 <h5 class="card-title">Directional Valves</h5>
