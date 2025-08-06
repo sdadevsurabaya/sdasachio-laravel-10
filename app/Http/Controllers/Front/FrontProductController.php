@@ -14,7 +14,9 @@ class FrontProductController extends Controller
     public function index(Request $request)
     {
         // Ambil produk dengan pagination
-        $products = Product::with('images')->paginate(10);
+        $products = Product::with('images')
+         ->whereColumn('group_product', 'id')
+         ->paginate(12);
 
         // Ambil semua grup unik
         $groupedProducts = Product::whereNotNull('group_product')
