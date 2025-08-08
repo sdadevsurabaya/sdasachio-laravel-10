@@ -34,7 +34,7 @@
                     <div class="d-lg-flex d-block justify-content-between">
                         <div class="col col-12 col-lg-6 mb-lg-0 mb-3">
                             <div class="ratio ratio-4x3 bg-secondary">
-                                <img src="/assets/img/gambar/banner.png" class="object-fit-cover" alt="">
+                                <img src="{{ url('/') }}/assets/img/gambar/banner.png" class="object-fit-cover" alt="">
                             </div>
                         </div><!-- end col -->
                         <div class="col col-12 col-lg-6 ps-lg-5 d-flex flex-column justify-content-center">
@@ -56,7 +56,7 @@
                     <div class="d-lg-flex d-block justify-content-between">
                         <div class="col col-12 col-lg-6 order-2 mb-lg-0 mb-3">
                             <div class="ratio ratio-4x3 bg-secondary">
-                                <img src="/assets/img/gambar/banner-2.jpg" class="object-fit-cover" alt="">
+                                <img src="{{ url('/') }}/assets/img/gambar/banner-2.jpg" class="object-fit-cover" alt="">
                             </div>
                         </div><!-- end col -->
                         <div class="col col-12 col-lg-6 order-1 ps-lg-5 d-flex flex-column justify-content-center">
