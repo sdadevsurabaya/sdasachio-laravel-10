@@ -152,25 +152,6 @@
                                 </div>
                             </a>
                         </button>
-                        <button class="nav-link card border-0 rounded-0" id="pills-solenoid-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-solenoid" type="button" role="tab" aria-controls="pills-solenoid"
-                            aria-selected="false">
-                            <a href="#" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Fluid Solenoid Valve</h5>
-                                </div>
-                            </a>
-                        </button>
-                        <button class="nav-link card border-0 rounded-0" id="pills-accessories-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-accessories" type="button" role="tab"
-                            aria-controls="pills-accessories" aria-selected="false">
-                            <a href="#" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Pneumatic Accessories</h5>
-                                </div>
-                            </a>
-                        </button>
-
                     </div>
                 </div>
                 <div class="col col-12 col-lg">
