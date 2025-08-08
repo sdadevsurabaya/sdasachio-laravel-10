@@ -2,7 +2,7 @@
    <div class="container">
       <h1 class="m-0">
          <a href="{{ url('/') }}" class="navbar-brand d-grid text-decoration-none">
-            <img src="../assets/img/logo/logo-a.svg" width="70%" height="auto" alt="SDA">
+            <img src="{{ url('/') }}/assets/img/logo/logo-a.svg" width="70%" height="auto" alt="SDA">
          </a>
       </h1>
       <button class="navbar-toggler border-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="color:#fff;">
