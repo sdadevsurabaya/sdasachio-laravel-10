@@ -65,7 +65,16 @@
                      <button class="nav-link card border-0 rounded-0" id="nav-tab-air" data-bs-toggle="pill" data-bs-target="#nav-content-air" type="button" role="tab" aria-controls="nav-content-air" aria-selected="false">
                         <a href="{{ url('/category') }}/http://127.0.0.1:8000/category/directional_valves" class="text-decoration-none">
                            <div class="card-body p-2">
-                              <h5 class="card-produk">Directional Valves</h5>
+                              <h5 class="card-produk">Directional Valve</h5>
+                           </div>
+                        </a>
+                     </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                     <button class="nav-link card border-0 rounded-0" id="nav-tab-directional" data-bs-toggle="pill" data-bs-target="#nav-content-directional" type="button" role="tab" aria-controls="nav-content-directional" aria-selected="false">
+                        <a href="{{ url('/category') }}/fluid_solenoid_valve" class="text-decoration-none">
+                           <div class="card-body p-2">
+                              <h5 class="card-produk">Fluid Solenoid Valve</h5>
                            </div>
                         </a>
                      </button>
@@ -79,15 +88,7 @@
                         </a>
                      </button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link card border-0 rounded-0" id="nav-tab-directional" data-bs-toggle="pill" data-bs-target="#nav-content-directional" type="button" role="tab" aria-controls="nav-content-directional" aria-selected="false">
-                        <a href="{{ url('/category') }}/directional_valves" class="text-decoration-none">
-                           <div class="card-body p-2">
-                              <h5 class="card-produk">Directional Valves</h5>
-                           </div>
-                        </a>
-                     </button>
-                  </li>
+
                </div>
             </div>
             <div class="col-4 order-1">

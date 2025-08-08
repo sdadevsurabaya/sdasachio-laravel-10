@@ -30,6 +30,7 @@ class FrontProductController extends Controller
             ->get()
             ->groupBy('group_product');
 
+
         return view('produk', compact('products', 'subGroups'));
     }
 

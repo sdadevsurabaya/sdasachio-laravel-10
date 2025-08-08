@@ -75,6 +75,7 @@
             </div>
         </div>
     </section>
+
     <section>
         <div class="container">
             <div class="border-bottom">
@@ -111,30 +112,13 @@
                                 </div>
                             </a>
                         </button>
-                        <button class="nav-link card border-0 rounded-0" id="pills-solenoid-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-solenoid" type="button" role="tab" aria-controls="pills-solenoid"
-                            aria-selected="false">
-                            <a href="#" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Fluid Solenoid Valve</h5>
-                                </div>
-                            </a>
-                        </button>
+
                         <button class="nav-link card border-0 rounded-0" id="pills-air-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-air" type="button" role="tab" aria-controls="pills-air"
                             aria-selected="false">
                             <a href="#" class="text-decoration-none">
                                 <div class="card-body p-2">
                                     <h5 class="card-produk">Air Source Treatment Units</h5>
-                                </div>
-                            </a>
-                        </button>
-                        <button class="nav-link card border-0 rounded-0" id="pills-accessories-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-accessories" type="button" role="tab"
-                            aria-controls="pills-accessories" aria-selected="false">
-                            <a href="#" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Pneumatic Accessories</h5>
                                 </div>
                             </a>
                         </button>
@@ -147,6 +131,25 @@
                                 </div>
                             </a>
                         </button>
+                        <button class="nav-link card border-0 rounded-0" id="pills-solenoid-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-solenoid" type="button" role="tab" aria-controls="pills-solenoid"
+                            aria-selected="false">
+                            <a href="#" class="text-decoration-none">
+                                <div class="card-body p-2">
+                                    <h5 class="card-produk">Fluid Solenoid Valve</h5>
+                                </div>
+                            </a>
+                        </button>
+                        <button class="nav-link card border-0 rounded-0" id="pills-accessories-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-accessories" type="button" role="tab"
+                            aria-controls="pills-accessories" aria-selected="false">
+                            <a href="#" class="text-decoration-none">
+                                <div class="card-body p-2">
+                                    <h5 class="card-produk">Pneumatic Accessories</h5>
+                                </div>
+                            </a>
+                        </button>
+
                     </div>
                 </div>
                 <div class="col col-12 col-lg">
@@ -234,3 +237,48 @@
         </div>
     </section>
 @endsection
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.custom-card');
+
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                e
+                    .preventDefault(); // Biar nggak langsung pindah halaman (hapus kalau mau langsung redirect)
+
+                // Hapus active dari semua card
+                cards.forEach(c => c.classList.remove('active'));
+
+                // Tambahkan active ke card yang diklik
+                this.classList.add('active');
+            });
+        });
+    });
+</script> --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.custom-card');
+
+    // Cek card terakhir yang aktif di localStorage
+    const activeUrl = localStorage.getItem('activeCardUrl');
+    if (activeUrl) {
+        cards.forEach(card => {
+            const parentLink = card.closest('a');
+            if (parentLink && parentLink.href === activeUrl) {
+                card.classList.add('active');
+            }
+        });
+    }
+
+    // Event klik
+    cards.forEach(card => {
+        const parentLink = card.closest('a');
+        if (parentLink) {
+            parentLink.addEventListener('click', function() {
+                // Simpan URL card yang diklik ke localStorage
+                localStorage.setItem('activeCardUrl', this.href);
+            });
+        }
+    });
+});
+</script>
