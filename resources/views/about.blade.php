@@ -109,7 +109,7 @@
                 <div class="row col-12 mb-5">
                     <div
                         class="col-12 col-lg-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
-                        <img src="../assets/img/logo/icon_1.svg" class="" height="100" width="100">
+                        <img src="../assets/img/logo/Icon_1.svg" class="" height="100" width="100">
                     </div>
                     <div class="col-12 col-lg-10 ms-lg-auto">
                         <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
@@ -129,7 +129,7 @@
                 <div class="row col-12 mb-5">
                     <div
                         class="col-12 col-lg-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
-                        <img src="../assets/img/logo/icon_2.svg" class="ms-4" height="100" width="100">
+                        <img src="../assets/img/logo/Icon_2.svg" class="ms-4" height="100" width="100">
                     </div>
                     <div class="col-12 col-lg-10 ms-auto">
                         <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
@@ -159,7 +159,7 @@
                 <div class="row col-12 mb-5">
                     <div
                         class="col-12 col-lg-2 border-start border-4 border-primary d-flex justify-content-center align-items-center">
-                        <img src="../assets/img/logo/icon_3.svg" class="" height="100" width="100">
+                        <img src="../assets/img/logo/Icon_3.svg" class="" height="100" width="100">
                     </div>
                     <div class="col-12 col-lg-10 ms-auto">
                         <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
