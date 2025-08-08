@@ -142,11 +142,12 @@
                Products</a>
             <div class="collapse" id="mobileSachio">
                <ul class="navbar-nav ps-4 mb-3">
-                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link" id="nav-about-mobile">Pneumatic Cylinders</a></li>
-                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Fluid Solenoid Valve</a></li>
-                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Air Source Treatment Units</a></li>
-                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Pneumatic Accessories</a></li>
-                  <li class="nav-item"> <a href="{{ url('/category') }}" class="nav-link">Directional Valves</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}/pneumatic_cylinders" class="nav-link" id="nav-about-mobile">Pneumatic Cylinders</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}/air_source_treatment_units" class="nav-link">Air Source Treatment Units</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}/directional_valves" class="nav-link">Directional Valves</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}/fluid_solenoid_valve" class="nav-link">Fluid Solenoid Valve</a></li>
+                  <li class="nav-item"> <a href="{{ url('/category') }}/pneumatic_accessories" class="nav-link">Pneumatic Accessories</a></li>
+
                </ul>
             </div>
          </li>
