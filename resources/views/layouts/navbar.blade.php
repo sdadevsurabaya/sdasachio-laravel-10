@@ -45,7 +45,7 @@
                <div class="nav nav-pills mb-3 row row-cols-1 row-cols-sm-3 row-cols-lg-3 gx-3 row-gap-3 gx-xl-4" id="nav-pills-tab" role="tablist">
                   <li class="nav-item" role="presentation">
                      <button class="nav-link card border-0 rounded-0 active" id="nav-tab-cylinders" data-bs-toggle="pill" data-bs-target="#nav-content-cylinders" type="button" role="tab" aria-controls="nav-content-cylinders" aria-selected="true">
-                        <a href="produk.php" class="text-decoration-none">
+                        <a href="{{ url('/category') }}/pneumatic_cylinders" class="text-decoration-none">
                            <div class="card-body p-2">
                               <h5 class="card-produk">Pneumatic Cylinders</h5>
                            </div>
@@ -54,16 +54,7 @@
                   </li>
                   <li class="nav-item" role="presentation">
                      <button class="nav-link card border-0 rounded-0" id="nav-tab-solenoid" data-bs-toggle="pill" data-bs-target="#nav-content-solenoid" type="button" role="tab" aria-controls="nav-content-solenoid" aria-selected="false">
-                        <a href="produk.php" class="text-decoration-none">
-                           <div class="card-body p-2">
-                              <h5 class="card-produk">Fluid Solenoid Valve</h5>
-                           </div>
-                        </a>
-                     </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link card border-0 rounded-0" id="nav-tab-air" data-bs-toggle="pill" data-bs-target="#nav-content-air" type="button" role="tab" aria-controls="nav-content-air" aria-selected="false">
-                        <a href="produk.php" class="text-decoration-none">
+                        <a href="{{ url('/category') }}/air_source_treatment_units" class="text-decoration-none">
                            <div class="card-body p-2">
                               <h5 class="card-produk">Air Source Treatment Units</h5>
                            </div>
@@ -71,8 +62,17 @@
                      </button>
                   </li>
                   <li class="nav-item" role="presentation">
+                     <button class="nav-link card border-0 rounded-0" id="nav-tab-air" data-bs-toggle="pill" data-bs-target="#nav-content-air" type="button" role="tab" aria-controls="nav-content-air" aria-selected="false">
+                        <a href="{{ url('/category') }}/http://127.0.0.1:8000/category/directional_valves" class="text-decoration-none">
+                           <div class="card-body p-2">
+                              <h5 class="card-produk">Directional Valves</h5>
+                           </div>
+                        </a>
+                     </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
                      <button class="nav-link card border-0 rounded-0" id="nav-tab-accessories" data-bs-toggle="pill" data-bs-target="#nav-content-accessories" type="button" role="tab" aria-controls="nav-content-accessories" aria-selected="false">
-                        <a href="produk.php" class="text-decoration-none">
+                        <a href="{{ url('/category') }}/pneumatic_accessories" class="text-decoration-none">
                            <div class="card-body p-2">
                               <h5 class="card-produk">Pneumatic Accessories</h5>
                            </div>
@@ -81,7 +81,7 @@
                   </li>
                   <li class="nav-item" role="presentation">
                      <button class="nav-link card border-0 rounded-0" id="nav-tab-directional" data-bs-toggle="pill" data-bs-target="#nav-content-directional" type="button" role="tab" aria-controls="nav-content-directional" aria-selected="false">
-                        <a href="produk.php" class="text-decoration-none">
+                        <a href="{{ url('/category') }}/directional_valves" class="text-decoration-none">
                            <div class="card-body p-2">
                               <h5 class="card-produk">Directional Valves</h5>
                            </div>
