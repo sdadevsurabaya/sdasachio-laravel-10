@@ -12,8 +12,10 @@
     .item .select {
         font-size: 0.9rem
     }
-    ol, ul {
-        padding-left: 1.3rem!important;
+
+    ol,
+    ul {
+        padding-left: 1.3rem !important;
     }
 
     ::marker {
@@ -188,12 +190,12 @@
                                                 <div class="col-3 select mb-2 ">
                                                     <label class="form-label fw-semibold">Subordinate Category</label>
 
-                                                    <select class="form-select" onchange="location = this.value;">
+                                                    <select class="form-select"
+                                                        onchange="if(this.value) window.location.href=this.value;">
                                                         <option selected disabled>Choose sub series</option>
-
                                                         @foreach ($subGroups[$product->group_product] as $sub)
-                                                            <option>
-                                                                {{-- value="{{ route('produk.detail', ['slugcategory' => $sub->category->slug, 'slugproduct' => $sub->slug]) }}"> --}}
+                                                            <option
+                                                                value="{{ url('category/' . $sub->category->slug . '/' . $sub->slug) }}">
                                                                 {{ $sub->name }}
                                                             </option>
                                                         @endforeach

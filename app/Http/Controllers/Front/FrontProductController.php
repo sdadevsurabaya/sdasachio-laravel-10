@@ -39,6 +39,8 @@ class FrontProductController extends Controller
         $category = \App\Models\Category::where('slug', $slugcategory)->firstOrFail();
         $product = \App\Models\Product::where('slug', $slugproduct)->where('category_id', $category->id)->firstOrFail();
 
-        return view('produk', compact('product', 'category'));
+//dd($product);
+
+        return view('detail_produk', compact('product', 'category'));
     }
 }
