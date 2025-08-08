@@ -94,27 +94,27 @@
                <div class="tab-kontent" id="nav-pills-tabContent">
                   <div class="tab-pane fade show active" id="nav-content-cylinders" role="tabpanel" aria-labelledby="nav-tab-cylinders" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="/assets/img/gambar/image-home-pneumatics.png" class="img-fluid" alt="Pneumatic Cylinders">
+                        <img src="/assets/img/gambar/Cover_menu_Pneumatic_Cylinders.webp" class="img-fluid" alt="Pneumatic Cylinders">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-solenoid" role="tabpanel" aria-labelledby="nav-tab-solenoid" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="/assets/img/gambar/image-home-directionalvalves.png" class="img-fluid" alt="Fluid Solenoid Valve">
+                        <img src="/assets/img/gambar/Cover_menu_Fluid_Solenoid_Valve.webp" class="img-fluid" alt="Fluid Solenoid Valve">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-air" role="tabpanel" aria-labelledby="nav-tab-air" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="/assets/img/gambar/image-home-airsource.png" class="img-fluid" alt="Air Source Treatment Units">
+                        <img src="/assets/img/gambar/Cover_menu_Air_Source_Treatment_Units.webp" class="img-fluid" alt="Air Source Treatment Units">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-accessories" role="tabpanel" aria-labelledby="nav-tab-accessories" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="/assets/img/gambar/image-home-directionalvalves.png" class="img-fluid" alt="Pneumatic Accessories">
+                        <img src="/assets/img/gambar/Cover_menu_Pneumatic_Accessories.webp" class="img-fluid" alt="Pneumatic Accessories">
                      </div>
                   </div>
                   <div class="tab-pane fade" id="nav-content-directional" role="tabpanel" aria-labelledby="nav-tab-directional" tabindex="0">
                      <div class="ratio ratio-16x9">
-                        <img src="/assets/img/gambar/image-home-airsource.png" class="img-fluid" alt="Directional Valves">
+                        <img src="/assets/img/gambar/Cover_menu_Directional_Valves.webp" class="img-fluid" alt="Directional Valves">
                      </div>
                   </div>
                </div>
