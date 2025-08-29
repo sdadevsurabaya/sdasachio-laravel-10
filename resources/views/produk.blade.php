@@ -33,7 +33,7 @@
             <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 gx-3 row-gap-3 gx-xl-4">
                 <div class="col">
                     <a href="{{ url('/category/pneumatic_cylinders') }}" class="text-decoration-none">
-                        <div class="card custom-card border-0 rounded-0">
+                        <div class="card custom-card border-0 rounded-0 {{ $currentCategory === 'pneumatic_cylinders' ? 'active' : '' }}">
                             <div class="card-body">
                                 <h5 class="card-title">Pneumatic Cylinders</h5>
                             </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col">
                     <a href="{{ url('/category/air_source_treatment_units') }}" class="text-decoration-none">
-                        <div class="card border-0 custom-card rounded-0">
+                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'air_source_treatment_units' ? 'active' : '' }}">
                             <div class="card-body">
                                 <h5 class="card-title">Air Source Treatment Units</h5>
                             </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col">
                     <a href="{{ url('/category/directional_valves') }}" class="text-decoration-none ">
-                        <div class="card border-0 custom-card rounded-0">
+                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'directional_valves' ? 'active' : '' }}">
                             <div class="card-body">
                                 <h5 class="card-title">Directional Valves</h5>
                             </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col">
                     <a href="{{ url('/category/fluid_solenoid_valve') }}" class="text-decoration-none">
-                        <div class="card border-0 custom-card rounded-0">
+                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'fluid_solenoid_valve' ? 'active' : '' }}">
                             <div class="card-body">
                                 <h5 class="card-title">Fluid Solenoid Valve</h5>
                             </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col">
                     <a href="{{ url('/category/pneumatic_accessories') }}" class="text-decoration-none">
-                        <div class="card border-0 custom-card rounded-0">
+                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'pneumatic_accessories' ? 'active' : '' }}">
                             <div class="card-body">
                                 <h5 class="card-title">Pneumatic Accessories</h5>
                             </div>
@@ -257,7 +257,7 @@
         });
     });
 </script> --}}
-<script>
+{{-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.custom-card');
 
@@ -283,4 +283,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
+</script> --}}

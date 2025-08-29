@@ -16,6 +16,10 @@ use App\Http\Controllers\Back\Admin\ProductController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('locale/{locale}', function ($locale) {
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('locale.change');
 
 Route::get('/', function () {
     return view('home');

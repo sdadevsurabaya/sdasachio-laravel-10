@@ -5,13 +5,12 @@
         <div class="container">
             <div class="col py-2 text-center">
                 <h5 class="display-5 fw-medium text-blue">
-                    <span class="">Company</span>
+                    <span class="">@lang('company.company_title')</span>
                 </h5>
                 <p class="">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                    nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    @lang('company.lorem_ipsum')
                 </p>
-            </div><!-- end col -->
+            </div>
         </div>
     </section>
     <section class="position-relative" style="background-color: var(--color-default);">
@@ -19,11 +18,11 @@
             <div class="row">
                 <div class="col text-end pe-lg-5">
                     <span class="fw-medium text-blue display-4">33</span><br>
-                    <span>Years of Experience</span>
+                    <span>@lang('company.years_of_experience')</span>
                 </div>
                 <div class="col text-start border-start ps-lg-5" style="border-color: #005fb9 !important;">
                     <span class="fw-medium text-blue display-4">177</span><br>
-                    <span>Employess</span>
+                    <span>@lang('company.employees')</span>
                 </div>
             </div>
     </section>
@@ -34,45 +33,39 @@
                     <div class="d-lg-flex d-block justify-content-between">
                         <div class="col col-12 col-lg-6 mb-lg-0 mb-3">
                             <div class="ratio ratio-4x3 bg-secondary">
-                                <img src="{{ url('/') }}/assets/img/gambar/banner.png" class="object-fit-cover" alt="">
+                                <img src="{{ url('/') }}/assets/img/gambar/banner.png" class="object-fit-cover"
+                                    alt="">
                             </div>
-                        </div><!-- end col -->
+                        </div>
                         <div class="col col-12 col-lg-6 ps-lg-5 d-flex flex-column justify-content-center">
                             <h5 class="display-6" style="color: var(--color-primary)">
-                                Lorem ipsum dolor sit amet
+                                @lang('company.lorem_ipsum_title')
                             </h5>
                             <p class="">
-                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
-                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
-                                sophisticated swaging and crimping.<br><br>
-                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
-                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
-                                sophisticated swaging and crimping.
+                                @lang('company.swaging_description')<br><br>
+                                @lang('company.swaging_description')
                             </p>
-                        </div><!-- end col -->
-                    </div><!-- end row -->
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="d-lg-flex d-block justify-content-between">
                         <div class="col col-12 col-lg-6 order-2 mb-lg-0 mb-3">
                             <div class="ratio ratio-4x3 bg-secondary">
-                                <img src="{{ url('/') }}/assets/img/gambar/banner-2.jpg" class="object-fit-cover" alt="">
+                                <img src="{{ url('/') }}/assets/img/gambar/banner-2.jpg" class="object-fit-cover"
+                                    alt="">
                             </div>
-                        </div><!-- end col -->
+                        </div>
                         <div class="col col-12 col-lg-6 order-1 ps-lg-5 d-flex flex-column justify-content-center">
                             <h5 class="display-6" style="color: var(--color-primary)">
-                                ISO 9001:2015
+                                @lang('company.iso_title')
                             </h5>
                             <p class="">
-                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
-                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
-                                sophisticated swaging and crimping.<br><br>
-                                Our Swaging/Crimping Center is dedicated to providing high-quality assembly solutions for
-                                hydraulic, pneumatic and industrial applications. This specialized facility is equipped with
-                                sophisticated swaging and crimping.
+                                @lang('company.swaging_description')<br><br>
+                                @lang('company.swaging_description')
                             </p>
-                        </div><!-- end col -->
-                    </div><!-- end row -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,14 +106,10 @@
                     </div>
                     <div class="col-12 col-lg-10 ms-lg-auto">
                         <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
-                            Sophisticated Infrastructure
+                            @lang('company.sophisticated_infrastructure_title')
                         </h5>
                         <p class="m-0 text-justify">
-                            Our robust and expansive warehouse empowers us to fulfill orders of
-                            any quantity, whether they are substantial or modest, regardless of the
-                            location. Our extensive dealer network ensures timely product delivery
-                            across the country. The dedication and expertise of our experienced
-                            staff have been instrumental in our remarkable success.
+                            @lang('company.sophisticated_infrastructure_description')
                         </p>
                     </div>
                 </div>
@@ -133,24 +122,22 @@
                     </div>
                     <div class="col-12 col-lg-10 ms-auto">
                         <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
-                            Competitive Strengths
+                            @lang('company.competitive_strengths_title')
                         </h5>
                         <span class="m-0 text-justify">
-                            <h5 class="fw-medium">Technical Proficiency</h5>
-                            <p class="mb-3">Supported by a team of skilled and knowledgeable staff.</p>
+                            <h5 class="fw-medium">@lang('company.technical_proficiency_title')</h5>
+                            <p class="mb-3">@lang('company.technical_proficiency_description')</p>
 
-                            <h5 class="fw-medium">Quality Assurance</h5>
-                            <p class="mb-3">Meeting customer requirements and industry standards consistently.
-                            </p>
+                            <h5 class="fw-medium">@lang('company.quality_assurance_title')</h5>
+                            <p class="mb-3">@lang('company.quality_assurance_description')</p>
                             <p>
 
                             </p>
-                            <h5 class="fw-medium">Timely Deliveries</h5>
-                            <p class="mb-3">Ensuring products are delivered promptly every time.</p>
+                            <h5 class="fw-medium">@lang('company.timely_deliveries_title')</h5>
+                            <p class="mb-3">@lang('company.timely_deliveries_description')</p>
 
-                            <h5 class="fw-medium">Affordable Pricing</h5>
-                            <p class="mb-3">Offering market-friendly prices that provide value for both clients and end
-                                users.</p>
+                            <h5 class="fw-medium">@lang('company.affordable_pricing_title')</h5>
+                            <p class="mb-3">@lang('company.affordable_pricing_description')</p>
                         </span>
                     </div>
                 </div>
@@ -163,17 +150,10 @@
                     </div>
                     <div class="col-12 col-lg-10 ms-auto">
                         <h5 class="display-lg-6 fs-2 text-lg-start text-center" style="color: var(--color-primary)">
-                            Customers' Satisfaction
+                            @lang('company.customers_satisfaction_title')
                         </h5>
                         <p class="m-0 text-justify">
-                            Our dedicated professionals have built strong relationships with clients by consistently
-                            delivering an
-                            extensive range of economical, high-performing, durable, and safe products. We prioritize
-                            customer
-                            satisfaction, actively seeking and valuing customer feedback. This input helps us enhance
-                            product
-                            quality while ensuring competitive pricing, ultimately bringing immense gratification to clients
-                            across Indonesia.
+                            @lang('company.customers_satisfaction_description')
                         </p>
                     </div>
                 </div>
