@@ -179,7 +179,7 @@
                         @lang('homepage.exhibition_description')
                     </p>
                 </div><div class="col">
-                    <img src="../assets/img/gambar/banner.png" class="img-fluid">
+                    <img src="../assets/img/gambar/banner.jpg" class="img-fluid">
                 </div>
             </div>
         </div></section>
