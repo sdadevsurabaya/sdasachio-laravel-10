@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="/assets/img/icon-sda.png" type="image/x-icon">
+<link rel="shortcut icon" href="/assets/img/logo/logo-sachio.png" type="image/x-icon">
 <link rel="stylesheet" href="/assets/vendors/bootstrap-5.3.3-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/assets/vendors/fontawesome-free-6.7.2-web/css/all.min.css">
 <link rel="stylesheet" href="/assets/fonts/HelveticaNeue/HelveticaNeue.css">

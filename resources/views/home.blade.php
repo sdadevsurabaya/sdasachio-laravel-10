@@ -51,7 +51,7 @@
                     <a href="sda-cikarang-opening.php" class="text-decoration-none">
                         <div class="card h-100 rounded-0 border-0">
                             <div class="card-header border-0 ratio ratio-1x1">
-                                <img src="../assets/img/gambar/image-home-pneumatics.png" class="object-fit-cover"
+                                <img src="../assets/img/gambar/Pneumatic-Cylinders1.webp" class="object-fit-cover"
                                     alt="">
                             </div>
                             <div class="card-body ps-0">
@@ -72,7 +72,7 @@
                     <a href="sda-cikarang-opening.php" class="text-decoration-none">
                         <div class="card h-100 rounded-0 border-0">
                             <div class="card-header border-0 ratio ratio-1x1">
-                                <img src="../assets/img/gambar/image-home-airsource.png" class="object-fit-cover"
+                                <img src="../assets/img/gambar/Air-Tools-Pneumatics1.webp" class="object-fit-cover"
                                     alt="">
                             </div>
                             <div class="card-body ps-0">
@@ -93,12 +93,54 @@
                     <a href="sda-cikarang-opening.php" class="text-decoration-none">
                         <div class="card h-100 rounded-0 border-0">
                             <div class="card-header border-0 ratio ratio-1x1">
-                                <img src="../assets/img/gambar/image-home-directionalvalves.png" class="object-fit-cover"
+                                <img src="../assets/img/gambar/Directional-valves1.webp" class="object-fit-cover"
                                     alt="">
                             </div>
                             <div class="card-body ps-0">
                                 <div class="title">
                                     <h5 class="fw-medium text-blue ">Directional Valve</h5>
+                                </div>
+                                <div class="desc">
+                                    <p class="fw-normal">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                        euismod tincidunt ut laoreet dolor
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="sda-cikarang-opening.php" class="text-decoration-none">
+                        <div class="card h-100 rounded-0 border-0">
+                            <div class="card-header border-0 ratio ratio-1x1">
+                                <img src="../assets/img/gambar/Fluid-Process-Valves1.webp" class="object-fit-cover"
+                                    alt="">
+                            </div>
+                            <div class="card-body ps-0">
+                                <div class="title">
+                                    <h5 class="fw-medium text-blue ">Fluid Solenoid Valve</h5>
+                                </div>
+                                <div class="desc">
+                                    <p class="fw-normal">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                        euismod tincidunt ut laoreet dolor
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="sda-cikarang-opening.php" class="text-decoration-none">
+                        <div class="card h-100 rounded-0 border-0">
+                            <div class="card-header border-0 ratio ratio-1x1">
+                                <img src="../assets/img/gambar/FittingsTubingsAccessories1.webp" class="object-fit-cover"
+                                    alt="">
+                            </div>
+                            <div class="card-body ps-0">
+                                <div class="title">
+                                    <h5 class="fw-medium text-blue ">Pneumatic Accessories</h5>
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
