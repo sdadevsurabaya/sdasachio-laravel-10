@@ -39,12 +39,12 @@
                         </div>
 
                         <!-- <div class="form-group">
-                                                                                        <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
-                                                                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
-                                                                                            ↻
-                                                                                        </button>
-                                                                                        <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
-                                                                                    </div> -->
+                                                                                                <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
+                                                                                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
+                                                                                                    ↻
+                                                                                                </button>
+                                                                                                <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
+                                                                                            </div> -->
 
                         <div class="form-group pt-3">
                             <button class="btn btn-dark btn-lg text-white rounded-0 w-100">Submit</button>
@@ -142,7 +142,7 @@
                 <div class="col col-12 col-lg-7 p-lg-4 mb-sm-0">
                     <div class="ratio ratio-16x9">
                         <iframe id="mapFrame"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37889.534669306646!2d112.66902143718794!3d-7.24166355999649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fef3d5aaebf9%3A0x1b9761bc6a8abc7c!2sPT.%20SDA%20Global!5e1!3m2!1sid!2sid!4v1756448882308!5m2!1sid!2sid"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.37246697807447!2d112.6761881871338!3d-7.24545262209964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fef3d5aaebf9%3A0x1b9761bc6a8abc7c!2sPT.%20SDA%20Global!5e0!3m2!1sid!2sid!4v1756455528885!5m2!1sid!2sid"
                             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -166,7 +166,7 @@
                     Email: headoffice@sda.co.id
                 </p>
             `,
-                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37889.534669306646!2d112.66902143718794!3d-7.24166355999649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fef3d5aaebf9%3A0x1b9761bc6a8abc7c!2sPT.%20SDA%20Global!5e1!3m2!1sid!2sid!4v1756449148150!5m2!1sid!2sid",
+                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.37246697807447!2d112.6761881871338!3d-7.24545262209964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fef3d5aaebf9%3A0x1b9761bc6a8abc7c!2sPT.%20SDA%20Global!5e0!3m2!1sid!2sid!4v1756455528885!5m2!1sid!2sid",
                 direction: "https://www.google.com/maps/dir/?api=1&destination=-7.245381821225234,112.67639614920121"
             },
             jakarta: {
@@ -182,8 +182,8 @@
                     Email: jkt@sda.co.id
                 </p>
             `,
-                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.8481889654693!2d106.87750937499182!3d-6.152388860158833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f59ffb1c2a7b%3A0x1234567890abcdef!2sKomp.+Puri+Mutiara+Blok+BD+No.+8!5e0!3m2!1sid!2sid!4v1756462222332!5m2!1sid!2sid",
-                direction: "https://www.google.com/maps/dir/?api=1&destination=Komp.+Puri+Mutiara+Blok+BD+No.+8,+Jakarta"
+                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.91543337208!2d106.85471280000002!3d-6.142061399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5c876e9fc4d%3A0xd842da5de0d57a1e!2sSDA%20Global!5e0!3m2!1sid!2sid!4v1756455144358!5m2!1sid!2sid",
+                direction: "https://www.google.com/maps/dir/?api=1&destination=-6.141869373480886,106.8553350744229"
             },
             sby: {
                 info: `
@@ -197,7 +197,7 @@
                     Email: sby@sda.co.id
                 </p>
             `,
-                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37889.534669306646!2d112.66902143718794!3d-7.24166355999649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f946c8d959b5%3A0xc2d2e219e8d38e3d!2sSDA%20Global!5e1!3m2!1sid!2sid!4v1756450699239!5m2!1sid!2sid",
+                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.477570387844!2d112.73220396606631!3d-7.251051429820073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f946c8d959b5%3A0xc2d2e219e8d38e3d!2sSDA%20Global!5e0!3m2!1sid!2sid!4v1756455614367!5m2!1sid!2sid",
                 direction: "https://www.google.com/maps/dir/?api=1&destination=-7.249408566436806,112.73311387385539"
             },
             semarang: {
@@ -213,8 +213,8 @@
                     Email: srg@sda.co.id
                 </p>
             `,
-                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.993454090326!2d110.42250937500212!3d-6.982388960157777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b123456789%3A0xabcdefabcdefabcd!2sKomp.+THD+Blok+C+No.+26,+Semarang!5e0!3m2!1sid!2sid!4v1756462333333!5m2!1sid!2sid",
-                direction: "https://www.google.com/maps/dir/?api=1&destination=Komp.+THD+Blok+C+No.+26,+Semarang"
+                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.4468546574967!2d110.42938620000002!3d-6.970843599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f326b7960f2f%3A0xcdc595af1172955c!2sSDA%20Global%20-%20Semarang!5e0!3m2!1sid!2sid!4v1756454303348!5m2!1sid!2sid",
+                direction: "https://www.google.com/maps/dir/?api=1&destination=-6.970625274218783,110.42942911737607"
             },
             cikarang: {
                 info: `
@@ -228,8 +228,8 @@
                     Email: ckr@sda.co.id
                 </p>
             `,
-                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.123456789012!2d107.1265093749955!3d-6.313388960123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6999123456789%3A0xabcdefabcdefabcd!2sDelta+Silicon+III,+Cikarang!5e0!3m2!1sid!2sid!4v1756462388888!5m2!1sid!2sid",
-                direction: "https://www.google.com/maps/dir/?api=1&destination=Jl.+Kapuk+Timur+Blok+F23+No.+11AB,+Cikarang"
+                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.2223959262014!2d107.1544011!3d-6.3652579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699bbb4282d917%3A0xcf73ce01a1474e3f!2sSDA%20Global%20-%20Cikarang!5e0!3m2!1sid!2sid!4v1756455032698!5m2!1sid!2sid",
+                direction: "https://www.google.com/maps/dir/?api=1&destination=-6.3651405958799865,107.15469077912714"
             },
             balikpapan: {
                 info: `
@@ -243,8 +243,8 @@
                     Email: bpp@sda.co.id
                 </p>
             `,
-                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.987654321012!2d116.8745093749981!3d-1.263388960145678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df1234567890%3A0xabcdefabcdefabcd!2sJl.+Mayjend.+Sutoyo+No.+39,+Balikpapan!5e0!3m2!1sid!2sid!4v1756462444444!5m2!1sid!2sid",
-                direction: "https://www.google.com/maps/dir/?api=1&destination=Jl.+Mayjend.+Sutoyo+No.+39,+Balikpapan"
+                map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.849168849545!2d116.84655079999999!3d-1.2628905000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df147714a6c7013%3A0x5e28c07f28a633b7!2sSDA%20Global%20-%20Balikpapan!5e0!3m2!1sid!2sid!4v1756455252107!5m2!1sid!2sid",
+                direction: "https://www.google.com/maps/dir/?api=1&destination=-1.2626491598222556,116.8466044441736"
             }
         };
 
