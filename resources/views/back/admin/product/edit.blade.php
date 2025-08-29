@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('back.layouts.layout')
 
 @section('content')
     <section class="page-section">
