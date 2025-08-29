@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.lorem_ipsum')
+                                        @lang('homepage.pneumatic_cylinders_text')
                                     </p>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.lorem_ipsum')
+                                        @lang('homepage.air_source_text')
                                     </p>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.lorem_ipsum')
+                                        @lang('homepage.directional_valve_text')
                                     </p>
                                 </div>
                             </div>
@@ -105,12 +105,11 @@
                             </div>
                             <div class="card-body ps-0">
                                 <div class="title">
-                                    <h5 class="fw-medium text-blue ">Fluid Solenoid Valve</h5>
+                                    <h5 class="fw-medium text-blue ">@lang('homepage.fluid_solenoid_valve_title')</h5>
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet dolor
+                                        @lang('homepage.fluid_solenoid_valve_text')
                                     </p>
                                 </div>
                             </div>
@@ -126,12 +125,11 @@
                             </div>
                             <div class="card-body ps-0">
                                 <div class="title">
-                                    <h5 class="fw-medium text-blue ">Pneumatic Accessories</h5>
+                                    <h5 class="fw-medium text-blue ">@lang('homepage.pneumatic_accessories_title')</h5>
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet dolor
+                                        @lang('homepage.pneumatic_accessories_text')
                                     </p>
                                 </div>
                             </div>
