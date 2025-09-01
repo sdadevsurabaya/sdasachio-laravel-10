@@ -26,7 +26,8 @@
                 </div>
             </div>
         </div>
-    </section><section class="page-section">
+    </section>
+    <section class="page-section">
         <div class="container">
             <h5 class="display-5 text-blue">
                 <span class="fw-medium">@lang('homepage.our_product_line')</span>
@@ -35,7 +36,8 @@
                 <p class="text-justify">
                     @lang('homepage.product_line_description')
                 </p>
-            </div><div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-3 row-gap-3 gx-xl-4">
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-3 row-gap-3 gx-xl-4">
                 <div class="col">
                     <a href="sda-cikarang-opening.php" class="text-decoration-none">
                         <div class="card h-100 rounded-0 border-0">
@@ -109,7 +111,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                       @lang('homepage.desc_fluid_solenoid_valve')
+                                        @lang('homepage.desc_fluid_solenoid_valve')
                                     </p>
                                 </div>
                             </div>
@@ -137,7 +139,8 @@
                     </a>
                 </div>
             </div>
-        </div></section>
+        </div>
+    </section>
 
     <section class="page-section">
         <div class="container">
@@ -149,22 +152,29 @@
                     <p class="m-0 text-justify">
                         @lang('homepage.company_views_description')
                     </p>
-                </div><div class="col">
-                    <div class="d-lg-flex d-block justify-content-between border-top border-bottom border-secondary-subtle">
+                </div>
+                <div class="col">
+                    <div
+                        class="d-lg-flex d-block justify-content-between border-top border-bottom border-secondary-subtle">
                         <div class="col col-12 col-lg-7">
                             <div class="ratio ratio-2x1 bg-secondary">
                                 <img src="../assets/img/gambar/banner-2.jpg" class="object-fit-cover" alt="">
                             </div>
-                        </div><div class="col col-12 col-lg-5 p-3 ps-lg-5 pe-lg-5 d-flex bg-gray flex-column justify-content-center">
+                        </div>
+                        <div
+                            class="col col-12 col-lg-5 p-3 ps-lg-5 pe-lg-5 d-flex bg-gray flex-column justify-content-center">
                             <h5 class="display-6 fw-normal" style="color: var(--color-primary)">
                                 @lang('homepage.hose_assembly_title')
                             </h5>
                             <p class="">
                                 @lang('homepage.hose_assembly_description')
                             </p>
-                        </div></div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div></section>
+        </div>
+    </section>
 
     <section class="page-section mb-0">
         <div class="container">
@@ -176,9 +186,16 @@
                     <p class="m-0 text-justify">
                         @lang('homepage.exhibition_description')
                     </p>
-                </div><div class="col">
+                </div>
+                <div class="col">
                     <img src="../assets/img/gambar/banner.jpg" class="img-fluid">
                 </div>
             </div>
-        </div></section>
-@endsection
+        </div>
+    </section>
+
+
+    <script>
+        $('#nav-home').addClass('active');
+    </script>
+    @endsection

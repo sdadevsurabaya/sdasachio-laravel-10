@@ -160,4 +160,8 @@
             </div>
         </div>
     </section>
+
+     <script>
+        $('#nav-about').addClass('active');
+    </script>
 @endsection

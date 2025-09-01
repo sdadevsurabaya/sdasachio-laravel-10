@@ -262,6 +262,10 @@
 
         // default (Head Office)
         btnEl.onclick = () => window.open(locations['head_office'].direction, "_blank");
+
+
+        $('#nav-contact').addClass('active');
+
     </script>
 @endsection
 @endsection
