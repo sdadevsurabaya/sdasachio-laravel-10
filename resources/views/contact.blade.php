@@ -39,12 +39,12 @@
                         </div>
 
                         <!-- <div class="form-group">
-                                                                                                <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
-                                                                                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
-                                                                                                    ↻
-                                                                                                </button>
-                                                                                                <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
-                                                                                            </div> -->
+                                                                                                        <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
+                                                                                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
+                                                                                                            ↻
+                                                                                                        </button>
+                                                                                                        <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
+                                                                                                    </div> -->
 
                         <div class="form-group pt-3">
                             <button class="btn btn-dark btn-lg text-white rounded-0 w-100">Submit</button>
@@ -70,29 +70,97 @@
                         }
                     </style>
                     <ul class="list-unstyled contact-list row g-3">
-                        <h5 class="fw-normal">
-                            PT. SACHIO INDONESIA <br>
-                            Fluid Power, Engineering & Industrial
-                        </h5>
+                        <!-- Head Office -->
                         <li class="contact-item col-12">
-                            <h5 class="fw-medium ">Head Office:</h5>
-                            <p class="fw-normal text-nowrap">
+                            <h5 class="fw-medium">Head Office</h5>
+                            <p class="fw-normal">
                                 Jl. Margomulyo Indah 1A No. 7-8 <br>
-                                Kec. Tandes, Surabaya 60186 <br>
-                                Jawa Timur - Indonesia <br>
-                                T: +62 31 748 2190
+                                Surabaya 60186, Jawa Timur - Indonesia
                             </p>
-                        </li><!-- end contact item -->
+                            <p class="fw-normal">
+                                Telephone: +62 31 748 2190, 748 2191 <br>
+                                WhatsApp: +62 812 2088 8800 <br>
+                                Email: headoffice@sda.co.id
+                            </p>
+                        </li>
+
+                        <!-- Jakarta Office -->
                         <li class="contact-item col-12">
-                            <h5 class="fw-medium">Jakarta Branch:</h5>
-                            <p class="fw-normal text-nowrap">
+                            <h5 class="fw-medium">Jakarta Office</h5>
+                            <p class="fw-normal">
                                 Komp. Puri Mutiara Blok BD No. 8 <br>
                                 Jl. Raya Griya Utama <br>
                                 Sunter Agung, Kec. Tanjung Priok <br>
-                                Jakarta Utara 14350 - Indonesia <br>
-                                T: +62 21 3888 8800
+                                Jakarta Utara 14350 - Indonesia
                             </p>
-                        </li><!-- end contact item -->
+                            <p class="fw-normal">
+                                Telephone: +62 21 3888 8800 <br>
+                                WhatsApp: +62 813 1833 8800 <br>
+                                Email: jkt@sda.co.id
+                            </p>
+                        </li>
+
+                        <!-- SDA Surabaya -->
+                        <li class="contact-item col-12">
+                            <h5 class="fw-medium">SDA Surabaya</h5>
+                            <p class="fw-normal">
+                                Komp. Raden Saleh Permai Kav. 19-20 <br>
+                                Jl. Raden Saleh No. 45 <br>
+                                Surabaya 60174, Jawa Timur - Indonesia
+                            </p>
+                            <p class="fw-normal">
+                                Telephone: +62 31 546 8800, 546 7700 <br>
+                                WhatsApp: +62 811 1066 8800 <br>
+                                Email: sby@sda.co.id
+                            </p>
+                        </li>
+
+                        <!-- SDA Semarang -->
+                        <li class="contact-item col-12">
+                            <h5 class="fw-medium">SDA Semarang</h5>
+                            <p class="fw-normal">
+                                Komp. THD Blok C No. 26 <br>
+                                Jl. KH. Agus Salim <br>
+                                Purwodinatan, Semarang 50137 <br>
+                                Jawa Tengah - Indonesia
+                            </p>
+                            <p class="fw-normal">
+                                Telephone: +62 24 8657 8800 <br>
+                                WhatsApp: +62 813 1822 8800 <br>
+                                Email: srg@sda.co.id
+                            </p>
+                        </li>
+
+                        <!-- SDA Cikarang -->
+                        <li class="contact-item col-12">
+                            <h5 class="fw-medium">SDA Cikarang</h5>
+                            <p class="fw-normal">
+                                Jl. Kapuk Timur Blok F23 No. 11AB <br>
+                                Delta Silicon III, Cicau, Cikarang 17530 <br>
+                                Bekasi, Jawa Barat - Indonesia
+                            </p>
+                            <p class="fw-normal">
+                                Telephone: +62 21 8997 9880 <br>
+                                WhatsApp: +62 813 1877 8800 <br>
+                                Email: ckr@sda.co.id
+                            </p>
+                        </li>
+
+                        <!-- SDA Balikpapan -->
+                        <li class="contact-item col-12">
+                            <h5 class="fw-medium">SDA Balikpapan</h5>
+                            <p class="fw-normal">
+                                Jl. Mayjend. Sutoyo No. 39 <br>
+                                Gunung Sari Ulu, Balikpapan 76122 <br>
+                                Kalimantan Timur - Indonesia
+                            </p>
+                            <p class="fw-normal">
+                                Telephone: +62 542 776 8800 <br>
+                                WhatsApp: +62 813 1855 8800 <br>
+                                Email: bpp@sda.co.id
+                            </p>
+                        </li>
+
                         <li class="contact-item col-12">
                             <h5 class="fs-3 fw-medium text-blue">Phone</h5>
                             <p class="fs-4 m-0 fw-medium">+62 31 748 2190</p>
@@ -102,7 +170,8 @@
                             <h5 class="fs-3 fw-medium text-blue">Email</h5>
                             <p class="fs-4 m-0 fw-medium">info@sachio.com</p>
                         </li>
-                    </ul><!-- end contact list -->
+                    </ul>
+                    <!-- end contact list -->
                 </div><!-- end col -->
             </div><!-- end row -->
         </div><!-- end container -->
