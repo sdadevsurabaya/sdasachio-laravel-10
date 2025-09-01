@@ -39,12 +39,12 @@
                         </div>
 
                         <!-- <div class="form-group">
-                                                                                                        <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
-                                                                                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
-                                                                                                            ↻
-                                                                                                        </button>
-                                                                                                        <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
-                                                                                                    </div> -->
+                                                                                                    <img src="generate-captcha.php" alt="CAPTCHA" id="captcha-img">
+                                                                                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('captcha-img').src='generate-captcha.php?'+Date.now();">
+                                                                                                        ↻
+                                                                                                    </button>
+                                                                                                    <input type="text" name="captcha" class="form-control fs-6 form-control-lg rounded-0 border-secondary opacity-50 fw-light" placeholder="Enter Captcha" required="">
+                                                                                                </div> -->
 
                         <div class="form-group pt-3">
                             <button class="btn btn-dark btn-lg text-white rounded-0 w-100">Submit</button>
@@ -161,15 +161,7 @@
                             </p>
                         </li>
 
-                        <li class="contact-item col-12">
-                            <h5 class="fs-3 fw-medium text-blue">Phone</h5>
-                            <p class="fs-4 m-0 fw-medium">+62 31 748 2190</p>
-                            <p class="fs-4 m-0 fw-medium">+62 748 2193</p>
-                        </li>
-                        <li class="contact-item col-12">
-                            <h5 class="fs-3 fw-medium text-blue">Email</h5>
-                            <p class="fs-4 m-0 fw-medium">info@sachio.com</p>
-                        </li>
+                        
                     </ul>
                     <!-- end contact list -->
                 </div><!-- end col -->
