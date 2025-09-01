@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.pneumatic_cylinders_text')
+                                        @lang('homepage.desc_pneumatic_cylinders')
                                     </p>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.air_source_text')
+                                        @lang('homepage.desc_air_source')
                                     </p>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.directional_valve_text')
+                                        @lang('homepage.desc_directional_valve')
                                     </p>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.fluid_solenoid_valve_text')
+                                       @lang('homepage.desc_fluid_solenoid_valve')
                                     </p>
                                 </div>
                             </div>
@@ -125,11 +125,11 @@
                             </div>
                             <div class="card-body ps-0">
                                 <div class="title">
-                                    <h5 class="fw-medium text-blue ">@lang('homepage.pneumatic_accessories_title')</h5>
+                                    <h5 class="fw-medium text-blue ">@lang('homepage.pneumatic_accessories_title') </h5>
                                 </div>
                                 <div class="desc">
                                     <p class="fw-normal">
-                                        @lang('homepage.pneumatic_accessories_text')
+                                        @lang('homepage.desc_pneumatic_accessories')
                                     </p>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                             <div class="ratio ratio-2x1 bg-secondary">
                                 <img src="../assets/img/gambar/banner-2.jpg" class="object-fit-cover" alt="">
                             </div>
-                        </div><div class="col col-12 col-lg-5 ps-5 d-flex bg-gray flex-column justify-content-center">
+                        </div><div class="col col-12 col-lg-5 p-3 ps-lg-5 pe-lg-5 d-flex bg-gray flex-column justify-content-center">
                             <h5 class="display-6 fw-normal" style="color: var(--color-primary)">
                                 @lang('homepage.hose_assembly_title')
                             </h5>
@@ -177,7 +177,7 @@
                         @lang('homepage.exhibition_description')
                     </p>
                 </div><div class="col">
-                    <img src="../assets/img/gambar/banner.png" class="img-fluid">
+                    <img src="../assets/img/gambar/banner.jpg" class="img-fluid">
                 </div>
             </div>
         </div></section>
