@@ -5,10 +5,10 @@
         <div class="container">
             <div class="col py-2 text-center">
                 <h5 class="display-5 fw-medium text-blue">
-                    <span class="">@lang('company.company_title')</span>
+                    <span class="">@lang('company.about_title')</span>
                 </h5>
                 <p class="">
-                    @lang('company.lorem_ipsum')
+                    @lang('company.sub_title')
                 </p>
             </div>
         </div>
@@ -33,7 +33,7 @@
                     <div class="d-lg-flex d-block justify-content-between">
                         <div class="col col-12 col-lg-6 mb-lg-0 mb-3">
                             <div class="ratio ratio-4x3 bg-secondary">
-                                <img src="{{ url('/') }}/assets/img/gambar/banner.png" class="object-fit-cover"
+                                <img src="{{ url('/') }}/assets/img/gambar/banner.jpg" class="object-fit-cover"
                                     alt="">
                             </div>
                         </div>
@@ -42,8 +42,7 @@
                                 @lang('company.lorem_ipsum_title')
                             </h5>
                             <p class="">
-                                @lang('company.swaging_description')<br><br>
-                                @lang('company.swaging_description')
+                                @lang('company.swaging_description')<br>
                             </p>
                         </div>
                     </div>
@@ -56,13 +55,13 @@
                                     alt="">
                             </div>
                         </div>
-                        <div class="col col-12 col-lg-6 order-1 ps-lg-5 d-flex flex-column justify-content-center">
+                        <div class="col col-12 col-lg-6 order-1 pe-lg-5 d-flex flex-column justify-content-center">
                             <h5 class="display-6" style="color: var(--color-primary)">
                                 @lang('company.iso_title')
                             </h5>
                             <p class="">
-                                @lang('company.swaging_description')<br><br>
-                                @lang('company.swaging_description')
+                                @lang('company.iso_description')<br><br>
+
                             </p>
                         </div>
                     </div>
