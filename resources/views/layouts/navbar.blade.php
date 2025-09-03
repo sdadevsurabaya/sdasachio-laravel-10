@@ -42,7 +42,7 @@
                 </li>
 
                 <li class="nav-item" style="align-self: center;">
-                    <a href="#" target="_blank" class="nav-link py-1 p-5" id="nav-wtb">
+                    <a href="#" class="nav-link py-1 p-5" id="nav-wtb">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </a>
                 </li>

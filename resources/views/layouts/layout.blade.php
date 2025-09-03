@@ -35,9 +35,9 @@
         </footer><!-- end page footer -->
     </div><!-- end page -->
     <script src="assets/js/script.js"></script>
-    <script>
+    {{-- <script>
        $('#nav-home').addClass('active');
-   </script>
+   </script> --}}
     @yield('scripts')
 </body>
 

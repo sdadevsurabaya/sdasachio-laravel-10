@@ -238,6 +238,9 @@
             </div>
         </div>
     </section>
+     <script>
+        $('#nav-produk').addClass('active');
+    </script>
 @endsection
 {{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
