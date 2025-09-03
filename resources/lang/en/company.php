@@ -7,7 +7,7 @@ return [
     'years_of_experience' => 'Years of Experience',
     'employees' => 'Employees',
 
-    'lorem_ipsum_title' => 'Reliability and Innovation',
+    'lorem_ipsum_title' => 'Decade of Integrity and Innovation',
     'swaging_description' => 'Sachio is a premier brand specializing in fluid conveying products, including hydraulics, pneumatics, and industrial hoses, with 30 years of experience. Recognized for our reliability and innovation, we serve a wide range of essential industries, such as manufacturing, firefighting, building safety, and transportation. Guided by quality and innovation, Sachio is committed to shaping the future of fluid conveying by delivering solutions that keep industries moving forward.',
 
     'iso_title' => 'ISO 9001:2015',
