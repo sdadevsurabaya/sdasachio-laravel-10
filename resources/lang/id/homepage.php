@@ -23,7 +23,7 @@ return [
     'pneumatic_accessories_title' => 'Penumatic Aksesoris',
     'desc_pneumatic_accessories' => 'Pneumatic Accessories mendukung dan meningkatkan kinerja sistem pneumatik, mulai dari konektor, fitting, hingga silencer dan tubing. Dirancang dengan presisi dan ketahanan tinggi, produk ini memastikan pemasangan yang mudah, sambungan yang andal, serta efisiensi jangka panjang di berbagai aplikasi industri.',
 
-    'company_views_title' => 'Tampilan Perusahaan',
+    'company_views_title' => 'Mitra Industri Terpercaya Lintas Generasi',
     'company_views_description' => 'Sachio adalah merek terkemuka yang berspesialisasi dalam produk penyaluran fluida, termasuk hidrolik, pneumatik, dan selang industri dengan pengalaman lebih dari 30 tahun. Diakui karena keandalan dan inovasinya, kami melayani berbagai industri penting seperti manufaktur, pemadam kebakaran, keselamatan bangunan, dan transportasi. Dengan komitmen kuat terhadap kualitas dan kepuasan pelanggan, Sachio menjadi mitra terpercaya bagi bisnis yang mencari solusi efisien dan andal untuk kebutuhan penyaluran fluida mereka.',
 
     'hose_assembly_title' => 'Hose Assembly',

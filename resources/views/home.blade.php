@@ -10,7 +10,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="container">
-                        <div class="row justify-content-lg-between">
+                        <div class="row justify-content-center justify-content-lg-between">
                             <div class="col-8 col-md-6 col-lg-5 mb-5 mb-lg-0">
                                 <img src="../assets/img/gambar/banner-home.png" class="img-fluid">
                             </div>

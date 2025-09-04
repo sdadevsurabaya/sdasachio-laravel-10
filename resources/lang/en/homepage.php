@@ -22,7 +22,7 @@ return [
     'pneumatic_accessories_title' => 'Penumatic Accessories',
     'desc_pneumatic_accessories' => 'Pneumatic Accessories support and enhance the performance of pneumatic systems, from connectors and fittings to silencers and tubing. Designed with precision and durability, they ensure smooth installation, reliable connections, and long-term efficiency across various industrial applications.',
 
-    'company_views_title' => 'Company Views',
+    'company_views_title' => 'Trusted Industry Partner Across Generations',
     'company_views_description' => 'Sachio is a premiere brand specializing in fluid conveying products, including hydraulics, pneumatics, and industrial hoses with 30 years of experience. Recognized for our reliability and innovation, we serve a wide range of essential industries, such as manufacturing, firefighting, building safety, and transportation. With a strong commitment to quality and customer satisfaction, Sachio is the turted partner for business seeking efficient and dependable solutions for their fluid conveying needs.',
 
     'hose_assembly_title' => 'Hose Assembly',
