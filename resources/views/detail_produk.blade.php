@@ -71,9 +71,9 @@
                     @endif
 
                     <div class="mt-4 d-flex gap-2">
-                        <a href="{{ url('/contact?product=' . $product->name) }}" class="btn btn-primary">SEND INQUIRY</a>
+                        <a href="{{ url('/contact?product=' . $product->name) }}" class="btn btn-primary text-white">Send Inquiry</a>
                         @if ($product->download_url)
-                            <a href="{{ $product->download_url }}" class="btn btn-dark" target="_blank">DOWNLOAD</a>
+                            <a href="{{ $product->download_url }}" class="btn btn-dark text-white" target="_blank">Download Catalog</a>
                         @endif
                     </div>
                 </div>
