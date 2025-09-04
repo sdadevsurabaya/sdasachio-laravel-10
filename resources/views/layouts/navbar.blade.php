@@ -51,7 +51,7 @@
     </div>
 </nav>
 
-<div id="produk-menu" class="collapse position-absolute w-100 bg-white shadow-sm" style="top: 97px; z-index: 1000;">
+<div id="produk-menu" class="collapse position-absolute w-100 bg-white shadow-sm" >
     <div class="container">
         <div class="col-12 py-5">
             <div class="row">
