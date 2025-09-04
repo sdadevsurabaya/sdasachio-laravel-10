@@ -7,7 +7,7 @@ return [
     'years_of_experience' => 'Tahun Pengalaman',
     'employees' => 'Karyawan',
 
-    'lorem_ipsum_title' => 'Dekade Integritas dan Inovasi',
+    'lorem_ipsum_title' => '3 Dekade Integritas dan Inovasi',
     'swaging_description' => 'Sachio memiliki pengalaman lebih dari 30 tahun, berfokus pada komponen pengaliran fluida, termasuk hidrolik, pneumatik, dan selang industri. Dikenal karena keandalan dan inovasi, Kami melayani berbagai sektor penting seperti manufaktur, pemadam kebakaran, keselamatan bangunan, dan transportasi. Berlandaskan kualitas dan inovasi, Sachio berkomitmen untuk membentuk masa depan industri dengan menghadirkan solusi yang menjaga dunia usaha tetap maju.',
 
     'iso_title' => 'ISO 9001:2015',
