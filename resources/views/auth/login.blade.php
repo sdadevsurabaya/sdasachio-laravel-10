@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guard Patrol - Login</title>
+    <title>Sachio Admin - Login</title>
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -69,8 +69,8 @@
     <div class="login-container">
         <div class="card">
             <div class="card-header">
-                <h3>🔒 Guard Patrol</h3>
-                <p class="mb-0">Secure Login System</p>
+                <h3>Sachio Admin</h3>
+                <p class="mb-0">Login</p>
             </div>
             <div class="card-body p-4">
                 <form method="POST" action="{{ route('login.submit') }}">
