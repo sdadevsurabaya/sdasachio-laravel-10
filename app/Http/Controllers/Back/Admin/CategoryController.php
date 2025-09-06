@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Back\Admin;
 
 use App\Http\Controllers\Controller;
@@ -25,7 +24,7 @@ class CategoryController extends Controller
             ->when($search, function ($q) use ($search) {
                 $q->where(function ($w) use ($search) {
                     $w->where('name', 'like', "%{$search}%")
-                      ->orWhere('slug', 'like', "%{$search}%");
+                        ->orWhere('slug', 'like', "%{$search}%");
                 });
             })
             ->orderBy('name')
@@ -70,7 +69,7 @@ class CategoryController extends Controller
         }
 
         // Cegah set parent ke dirinya sendiri (untuk store tak perlu, tapi aman untuk future)
-        if (!empty($data['parent_id']) && isset($request->id) && (int)$data['parent_id'] === (int)$request->id) {
+        if (! empty($data['parent_id']) && isset($request->id) && (int) $data['parent_id'] === (int) $request->id) {
             return back()->withInput()->withErrors(['parent_id' => 'Parent category tidak boleh dirinya sendiri.']);
         }
 
@@ -94,26 +93,27 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $data = $request->validate([
-            'name'        => ['required', 'string', 'max:255'],
-            'parent_id'   => ['nullable', 'integer', Rule::exists('categories', 'id')],
-            'description' => ['nullable', 'string'],
-            'slug'        => [
+            'name'         => ['required', 'string', 'max:255'],
+            'parent_id'    => ['nullable', 'integer', Rule::exists('categories', 'id')],
+            'description'  => ['nullable', 'string'],
+            'slug'         => [
                 'nullable',
                 'string',
                 'max:255',
                 Rule::unique('categories', 'slug')->ignore($category->id),
             ],
-            'image'       => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048'],
-            'remove_image'=> ['nullable', 'boolean'],
+            'image'        => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048'],
+            'remove_image' => ['nullable', 'boolean'],
+            'status'       => ['required', 'boolean'],
         ]);
 
         // Cegah parent diri sendiri
-        if (!empty($data['parent_id']) && (int)$data['parent_id'] === (int)$category->id) {
+        if (! empty($data['parent_id']) && (int) $data['parent_id'] === (int) $category->id) {
             return back()->withInput()->withErrors(['parent_id' => 'Parent category tidak boleh dirinya sendiri.']);
         }
 
         // (Opsional) Cegah siklus sederhana: jangan set parent ke salah satu anak langsung
-        if (!empty($data['parent_id'])) {
+        if (! empty($data['parent_id'])) {
             $isChild = Category::where('parent_id', $category->id)->where('id', $data['parent_id'])->exists();
             if ($isChild) {
                 return back()->withInput()->withErrors(['parent_id' => 'Tidak boleh mengatur parent ke subkategori langsung (menghindari siklus).']);
@@ -122,12 +122,12 @@ class CategoryController extends Controller
 
         // Slug: jika kosong, regenerasi dari name; jika diisi, pakai yang diisi (tetap unik)
         if (empty($data['slug'])) {
-            $baseSlug    = Str::slug($data['name']);
+            $baseSlug     = Str::slug($data['name']);
             $data['slug'] = $this->makeUniqueSlug($baseSlug, $category->id);
         }
 
         // Hapus gambar lama jika diminta
-        if (!empty($data['remove_image']) && $category->image) {
+        if (! empty($data['remove_image']) && $category->image) {
             if (Storage::disk('public')->exists($category->image)) {
                 Storage::disk('public')->delete($category->image);
             }
@@ -148,6 +148,7 @@ class CategoryController extends Controller
             'slug'        => $data['slug'],
             'parent_id'   => $data['parent_id'] ?? null,
             'description' => $data['description'] ?? null,
+            'status'      => $data['status'],
         ]);
 
         if (array_key_exists('image', $data)) {
@@ -191,11 +192,11 @@ class CategoryController extends Controller
     {
         $slug = $baseSlug ?: Str::random(8);
 
-        $exists = fn ($s) => Category::where('slug', $s)
+        $exists = fn($s) => Category::where('slug', $s)
             ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
             ->exists();
 
-        if (!$exists($slug)) {
+        if (! $exists($slug)) {
             return $slug;
         }
 

@@ -105,7 +105,8 @@ class ProductController extends Controller
             'images.*'      => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Validasi untuk setiap gambar baru
             // Validasi untuk gambar yang akan dihapus
             'delete_images'   => 'nullable|array',
-            'delete_images.*' => 'integer|exists:product_images,id' // Pastikan ID-nya ada di database
+            'delete_images.*' => 'integer|exists:product_images,id', // Pastikan ID-nya ada di database
+            'status' => 'required|boolean',
         ]);
 
         // 2. HAPUS GAMBAR LAMA (DARI GALERI) YANG DICENTANG
@@ -141,7 +142,7 @@ class ProductController extends Controller
         }
 
         // 4. UPDATE DATA UTAMA PRODUK
-        $productData = $request->only(['name', 'sku', 'category_id', 'description', 'download_url']);
+        $productData = $request->only(['name', 'sku', 'category_id', 'description', 'download_url', 'status']);
 
         // Kelola fitur, kode Anda sudah bagus
         // Simpan fitur

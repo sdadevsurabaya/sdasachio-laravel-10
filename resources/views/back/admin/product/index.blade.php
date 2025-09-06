@@ -26,6 +26,7 @@
                                 <th>SKU</th>
                                 <th>Kategori</th>
                                 <th>Gambar</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -48,6 +49,10 @@
                                             </div>
                                         @endif
                                     </td>
+                                    <td class="text-center">{!! $product->status
+                                        ? '<span class="badge bg-success">Active</span>'
+                                        : '<span class="badge bg-danger">Nonaktif</span>' !!}</td>
+
                                     <td class="text-nowrap">
                                         <a href="{{ route('back.admin.product.show', $product) }}"
                                             class="btn btn-sm btn-info">Detail</a>

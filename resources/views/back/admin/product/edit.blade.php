@@ -134,8 +134,8 @@
                                     - name="delete_images[]" akan mengirim array ID gambar yang mau dihapus.
                                     - value="{{ $img->id }}" adalah ID dari gambar di database.
                                     --}}
-                                    <input type="checkbox" name="delete_images[]" id="check{{ $img->id }}" value="{{ $img->id }}"
-                                        title="Pilih untuk hapus gambar ini">
+                                    <input type="checkbox" name="delete_images[]" id="check{{ $img->id }}"
+                                        value="{{ $img->id }}" title="Pilih untuk hapus gambar ini">
                                     <img src="{{ asset('storage/' . $img->image) }}" width="150" height="150"
                                         class="img-thumbnail" style="object-fit: cover;">
                                 </div>
@@ -197,12 +197,12 @@
                                             // Jika Anda juga ingin menghilangkan konfirmasi di sini,
                                             // hapus baris if(confirm(...)) dan kurung kurawalnya.
                                             if (confirm(
-                                                'Anda yakin ingin menghapus pratinjau gambar ini?')) {
+                                                    'Anda yakin ingin menghapus pratinjau gambar ini?')) {
                                                 const idxToRemove = parseInt(this.dataset.index, 10);
                                                 const newFileStore = new DataTransfer();
                                                 Array.from(fileStore.files).forEach((f, i) => {
                                                     if (i !== idxToRemove) newFileStore.items.add(
-                                                    f);
+                                                        f);
                                                 });
                                                 fileStore = newFileStore;
                                                 imageInput.files = fileStore.files;
@@ -252,11 +252,11 @@
                 <script>
                     function addFeatureRow() {
                         const html = `
-            <div class="row mb-2">
-                <div class="col"><input type="text" name="feature_keys[]" class="form-control" placeholder="Fitur"></div>
-                <div class="col"><input type="text" name="feature_values[]" class="form-control" placeholder="Nilai"></div>
-            </div>
-        `;
+                            <div class="row mb-2">
+                                <div class="col"><input type="text" name="feature_keys[]" class="form-control" placeholder="Fitur"></div>
+                                <div class="col"><input type="text" name="feature_values[]" class="form-control" placeholder="Nilai"></div>
+                            </div>
+                        `;
                         document.getElementById('features-list').insertAdjacentHTML('beforeend', html);
                     }
                 </script>
@@ -268,6 +268,19 @@
                     <label for="download_url">Download File (URL)</label>
                     <input type="text" name="download_url" class="form-control" placeholder="https://..."
                         value="{{ $product->download_url }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select name="status" class="form-control @error('status') is-invalid @enderror">
+                        <option value="1" {{ old('status', $product->status) == 1 ? 'selected' : '' }}>Active
+                        </option>
+                        <option value="0" {{ old('status', $product->status) == 0 ? 'selected' : '' }}>Nonaktif
+                        </option>
+                    </select>
+                    @error('status')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
