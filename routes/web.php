@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontCategoryController;
 use App\Http\Controllers\Front\FrontProductController;
 use App\Http\Controllers\Back\Admin\ProductController;
+use App\Http\Controllers\Back\Admin\CategoryController;
+
 
 
 /*
@@ -45,4 +47,5 @@ Route::get('/product', [FrontProductController::class, 'index'])->name('product.
 
 Route::prefix('back/admin')->name('back.admin.')->group(function () {
     Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
 });

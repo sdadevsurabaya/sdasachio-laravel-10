@@ -12,7 +12,7 @@
 
     <li class="nav-item">
         <a class="nav-link"
-            href="#">
+            href="{{ route('back.admin.category.index') }}">
             <span class="menu-icon">
                 <i class="bi bi-geo-alt fs-3"></i>
             </span>
@@ -22,7 +22,7 @@
 
     <li class="nav-item">
         <a class="nav-link"
-            href="#">
+            href="{{ route('back.admin.product.index') }}">
             <span class="menu-icon">
                 <i class="bi bi-geo-alt fs-3"></i>
             </span>

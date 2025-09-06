@@ -1,172 +1,208 @@
 <?php
+
 namespace App\Http\Controllers\Back\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Product;
-use App\Models\ProductImage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->query('search');
+        $search   = trim($request->query('search', ''));
+        $parentId = $request->query('parent_id'); // opsional filter parent
 
-        $products = Product::with('category')
-            ->when($search, function ($query, $search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('sku', 'like', '%' . $search . '%');
+        $categories = Category::query()
+            ->withCount(['children', 'products'])
+            ->with(['parent:id,name'])
+            ->when($parentId !== null && $parentId !== '', function ($q) use ($parentId) {
+                $q->where('parent_id', $parentId);
             })
-            // ->latest()
-            ->orderBy('id', 'asc') // ganti dari ->latest() menjadi ->orderBy('id', 'asc')
-            ->paginate(10);
+            ->when($search, function ($q) use ($search) {
+                $q->where(function ($w) use ($search) {
+                    $w->where('name', 'like', "%{$search}%")
+                      ->orWhere('slug', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('name')
+            ->paginate(12)
+            ->withQueryString();
 
-        return view('back.admin.product.index', compact('products', 'search'));
+        // Untuk dropdown filter parent
+        $allParents = Category::orderBy('name')->get(['id', 'name']);
+
+        return view('back.admin.category.index', compact('categories', 'search', 'parentId', 'allParents'));
     }
 
-    public function show(Product $product)
+    public function show(Category $category)
     {
-        return view('back.admin.product.show', compact('product'));
+        $category->load(['parent', 'children', 'products']);
+        return view('back.admin.category.show', compact('category'));
     }
 
     public function create()
     {
-        $categories = Category::all();
-        return view('back.admin.product.create', compact('categories'));
+        $parents = Category::orderBy('name')->get(['id', 'name']);
+        return view('back.admin.category.create', compact('parents'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name'        => 'required|string',
-            'category_id' => 'required|exists:categories,id',
-            'description' => 'nullable|string',
-            'sku'         => 'nullable|string',
-            'image'       => 'nullable|image|max:2048',
+        $data = $request->validate([
+            'name'        => ['required', 'string', 'max:255'],
+            'parent_id'   => ['nullable', 'integer', Rule::exists('categories', 'id')],
+            'description' => ['nullable', 'string'],
+            'slug'        => ['nullable', 'string', 'max:255', 'unique:categories,slug'],
+            'image'       => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048'],
         ]);
 
-        $imagePath = null;
+        // Generate slug jika kosong
+        $baseSlug     = $data['slug'] ?? Str::slug($data['name']);
+        $data['slug'] = $this->makeUniqueSlug($baseSlug);
+
+        // Upload image (opsional)
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
+            $data['image'] = $request->file('image')->store('categories', 'public');
         }
 
-        $product = Product::create([
-            'name'        => $request->name,
-            'sku'         => $request->sku,
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'image'       => $imagePath,
+        // Cegah set parent ke dirinya sendiri (untuk store tak perlu, tapi aman untuk future)
+        if (!empty($data['parent_id']) && isset($request->id) && (int)$data['parent_id'] === (int)$request->id) {
+            return back()->withInput()->withErrors(['parent_id' => 'Parent category tidak boleh dirinya sendiri.']);
+        }
+
+        $category = Category::create($data);
+
+        return redirect()
+            ->route('back.admin.category.index')
+            ->with('success', 'Kategori berhasil ditambahkan.');
+    }
+
+    public function edit(Category $category)
+    {
+        // daftar parent, kecualikan dirinya sendiri agar tak terjadi loop
+        $parents = Category::where('id', '!=', $category->id)
+            ->orderBy('name')
+            ->get(['id', 'name']);
+
+        return view('back.admin.category.edit', compact('category', 'parents'));
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $data = $request->validate([
+            'name'        => ['required', 'string', 'max:255'],
+            'parent_id'   => ['nullable', 'integer', Rule::exists('categories', 'id')],
+            'description' => ['nullable', 'string'],
+            'slug'        => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('categories', 'slug')->ignore($category->id),
+            ],
+            'image'       => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048'],
+            'remove_image'=> ['nullable', 'boolean'],
         ]);
 
-        // Upload images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $img) {
-                $path = $img->store('products', 'public');
-                $product->images()->create(['image' => $path]);
+        // Cegah parent diri sendiri
+        if (!empty($data['parent_id']) && (int)$data['parent_id'] === (int)$category->id) {
+            return back()->withInput()->withErrors(['parent_id' => 'Parent category tidak boleh dirinya sendiri.']);
+        }
+
+        // (Opsional) Cegah siklus sederhana: jangan set parent ke salah satu anak langsung
+        if (!empty($data['parent_id'])) {
+            $isChild = Category::where('parent_id', $category->id)->where('id', $data['parent_id'])->exists();
+            if ($isChild) {
+                return back()->withInput()->withErrors(['parent_id' => 'Tidak boleh mengatur parent ke subkategori langsung (menghindari siklus).']);
             }
         }
 
-        // Simpan fitur
-        $features = collect($request->input('feature_keys', []))
-            ->combine($request->input('feature_values', []))
-            ->filter();
+        // Slug: jika kosong, regenerasi dari name; jika diisi, pakai yang diisi (tetap unik)
+        if (empty($data['slug'])) {
+            $baseSlug    = Str::slug($data['name']);
+            $data['slug'] = $this->makeUniqueSlug($baseSlug, $category->id);
+        }
 
-        $product->features     = $features;
-        $product->download_url = $request->input('download_url');
-        $product->save();
+        // Hapus gambar lama jika diminta
+        if (!empty($data['remove_image']) && $category->image) {
+            if (Storage::disk('public')->exists($category->image)) {
+                Storage::disk('public')->delete($category->image);
+            }
+            $category->image = null; // reset kolom
+        }
 
-        return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil ditambahkan.');
-    }
+        // Upload gambar baru jika ada
+        if ($request->hasFile('image')) {
+            // hapus lama
+            if ($category->image && Storage::disk('public')->exists($category->image)) {
+                Storage::disk('public')->delete($category->image);
+            }
+            $data['image'] = $request->file('image')->store('categories', 'public');
+        }
 
-    public function edit(Product $product)
-    {
-        $categories = Category::all();
-
-        $prevProductId = Product::where('id', '<', $product->id)->max('id');
-        $nextProductId = Product::where('id', '>', $product->id)->min('id');
-
-        return view('back.admin.product.edit', compact('product', 'categories', 'prevProductId', 'nextProductId'));
-        // return view('back.admin.product.edit', compact('product', 'categories'));
-    }
-
-    public function update(Request $request, Product $product)
-    {
-        // 1. VALIDASI DATA
-        $request->validate([
-            'name'          => 'required|string|max:255',
-            'category_id'   => 'required|exists:categories,id',
-            'description'   => 'nullable|string',
-            'sku'           => 'nullable|string',
-            'download_url'  => 'nullable|string',
-            // Validasi untuk gambar galeri
-            'images'        => 'nullable|array',
-            'images.*'      => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Validasi untuk setiap gambar baru
-            // Validasi untuk gambar yang akan dihapus
-            'delete_images'   => 'nullable|array',
-            'delete_images.*' => 'integer|exists:product_images,id' // Pastikan ID-nya ada di database
+        $category->fill([
+            'name'        => $data['name'],
+            'slug'        => $data['slug'],
+            'parent_id'   => $data['parent_id'] ?? null,
+            'description' => $data['description'] ?? null,
         ]);
 
-        // 2. HAPUS GAMBAR LAMA (DARI GALERI) YANG DICENTANG
-        if ($request->has('delete_images')) {
-            foreach ($request->delete_images as $imageId) {
-                $imageToDelete = ProductImage::find($imageId);
-                if ($imageToDelete) {
-                    // Karena Anda menyimpan di folder public, kita gunakan File::delete
-                    // public_path() akan mengarahkan ke folder 'public' di root proyek Anda
-                    $filePath = public_path($imageToDelete->image);
-                    if (File::exists($filePath)) {
-                        File::delete($filePath);
-                    }
-
-                    // Hapus record dari database
-                    $imageToDelete->delete();
-                }
-            }
+        if (array_key_exists('image', $data)) {
+            $category->image = $data['image'];
         }
 
-        // 3. UPLOAD GAMBAR BARU (KE GALERI)
-        // Ini adalah blok kode Anda, sudah benar.
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $img) {
-                $imageName = time() . '_' . $img->hashName();
-                $destinationPath = 'storage/products';
-                $img->move($destinationPath, $imageName);
-                $dbPath = 'products/' . $imageName;
+        $category->save();
 
-                // Simpan path ke relasi 'images' milik produk
-                $product->images()->create(['image' => $dbPath]);
-            }
-        }
-
-        // 4. UPDATE DATA UTAMA PRODUK
-        $productData = $request->only(['name', 'sku', 'category_id', 'description', 'download_url']);
-
-        // Kelola fitur, kode Anda sudah bagus
-        // Simpan fitur
-        $features = collect($request->input('feature_keys', []))
-            ->combine($request->input('feature_values', []))
-            ->filter();
-
-        $productData['features'] = $features;
-
-        // Lakukan update data produk
-        $product->update($productData);
-
-        // return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil diperbarui.');
-        return redirect()->route('back.admin.product.edit', $product->id)->with('success', 'Produk berhasil diperbarui.');
-
+        return redirect()
+            ->route('back.admin.category.edit', $category->id)
+            ->with('success', 'Kategori berhasil diperbarui.');
     }
 
-    public function destroy(Product $product)
+    public function destroy(Category $category)
     {
-        if ($product->image && \Storage::disk('public')->exists($product->image)) {
-            \Storage::disk('public')->delete($product->image);
+        $category->loadCount(['children', 'products']);
+
+        if ($category->children_count > 0) {
+            return back()->with('error', 'Tidak dapat menghapus: masih memiliki subkategori.');
         }
 
-        $product->delete();
+        if ($category->products_count > 0) {
+            return back()->with('error', 'Tidak dapat menghapus: masih ada produk yang terkait.');
+        }
 
-        return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil dihapus.');
+        if ($category->image && Storage::disk('public')->exists($category->image)) {
+            Storage::disk('public')->delete($category->image);
+        }
+
+        $category->delete();
+
+        return redirect()
+            ->route('back.admin.category.index')
+            ->with('success', 'Kategori berhasil dihapus.');
+    }
+
+    /**
+     * Buat slug unik; tambahkan sufiks angka jika sudah ada.
+     */
+    private function makeUniqueSlug(string $baseSlug, ?int $ignoreId = null): string
+    {
+        $slug = $baseSlug ?: Str::random(8);
+
+        $exists = fn ($s) => Category::where('slug', $s)
+            ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
+            ->exists();
+
+        if (!$exists($slug)) {
+            return $slug;
+        }
+
+        $i = 2;
+        while ($exists("{$baseSlug}-{$i}")) {
+            $i++;
+        }
+        return "{$baseSlug}-{$i}";
     }
 }
