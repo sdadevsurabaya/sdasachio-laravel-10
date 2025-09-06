@@ -112,7 +112,7 @@
                 </form>
             </div>
         </div>
-        <p class="footer-text">© {{ date('Y') }} Guard Patrol. All rights reserved.</p>
+        <p class="footer-text">© {{ date('Y') }} Sachio Admin. All rights reserved.</p>
     </div>
 
     <!-- Bootstrap JS (optional) -->
