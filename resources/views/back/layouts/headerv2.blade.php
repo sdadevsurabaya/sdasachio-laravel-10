@@ -262,7 +262,7 @@
                             </a>
                         </li>
                         <li>
-                            <form action="{{ url('/logout') }}" method="POST"
+                            <form action="{{ route('logout') }}" method="POST"
                                 class="d-flex align-items-center p-0 m-0">
                                 @csrf
                                 <button type="submit"

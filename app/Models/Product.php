@@ -15,6 +15,7 @@ class Product extends Model
         'image',
         'category_id',
         'parent_id',
+        'status',
     ];
 
     // Relasi ke kategori

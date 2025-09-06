@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Category extends Model
 {
     protected $fillable = [
-        'name', 'parent_id', 'description', 'image',
+        'name', 'parent_id', 'description', 'image','status',
     ];
 
     // Relasi ke subkategori

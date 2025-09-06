@@ -46,7 +46,8 @@
         <th>Parent</th>
         <th class="text-center">Sub</th>
         <th class="text-center">Produk</th>
-        <th style="width:160px;"></th>
+        <th class="text-center">status</th>
+        <th class="text-center">opsi</th>
       </tr>
     </thead>
     <tbody>
@@ -66,7 +67,8 @@
           <td>{{ $c->parent?->name ?? '—' }}</td>
           <td class="text-center">{{ $c->children_count }}</td>
           <td class="text-center">{{ $c->products_count }}</td>
-          <td class="text-end">
+          <td class="text-center">{!! $c->status ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Nonaktif</span>' !!}</td>
+          <td class="text-center">
             <a href="{{ route('back.admin.category.edit', $c->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
             <form action="{{ route('back.admin.category.destroy', $c->id) }}" method="POST" class="d-inline"
                   onsubmit="return confirm('Hapus kategori ini?');">

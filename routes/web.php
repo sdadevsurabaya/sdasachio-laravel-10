@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Back\Admin\CategoryController;
+use App\Http\Controllers\Back\Admin\ProductController;
 use App\Http\Controllers\Front\FrontCategoryController;
 use App\Http\Controllers\Front\FrontProductController;
-use App\Http\Controllers\Back\Admin\ProductController;
-use App\Http\Controllers\Back\Admin\CategoryController;
-
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +44,12 @@ Route::get('/category/{slugcategory}/{slugproduct}', [FrontProductController::cl
 
 Route::get('/product', [FrontProductController::class, 'index'])->name('product.index');
 
-Route::prefix('back/admin')->name('back.admin.')->group(function () {
+// Login routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth', 'admin'])->prefix('back/admin')->name('back.admin.')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('category', CategoryController::class);
 });
