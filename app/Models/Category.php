@@ -9,28 +9,45 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Category extends Model
 {
     protected $fillable = [
-        'name', 'parent_id', 'description', 'image', 'status',
+        'name',
+        'slug',
+        'parent_id',
+        'description',
+        'image',
+        'status',
+        'order',
+        'ina_title',
+        'eng_title',
+        'ina_desc',
+        'eng_desc',
     ];
 
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Relasi ke subkategori
     public function children(): HasMany
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id')->orderBy('order')->orderBy('name');
     }
 
-    // Relasi ke kategori induk
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    // Relasi ke produk langsung (tanpa memperhitungkan subkategori)
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    // Helper judul lokal
+    public function getLocalTitleAttribute(): string
+    {
+        $locale = app()->getLocale();
+        if ($locale === 'id') {
+            return $this->ina_title ?: ($this->name ?? '');
+        }
+        return $this->eng_title ?: ($this->name ?? '');
     }
 }

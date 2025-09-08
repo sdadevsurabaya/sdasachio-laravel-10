@@ -13,34 +13,66 @@ class FrontProductController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil produk dengan pagination
-        $products = Product::with('images')
-         ->whereColumn('group_product', 'id')
-         ->paginate(12);
+        // Segment ke-2 setelah /category/{slug?}
+        $slug = $request->segment(2);
 
-        // Ambil semua grup unik
+        // Ambil kategori root (parent_id NULL), aktif saja
+        $categories = Category::whereNull('parent_id')
+            ->where('status', true)
+            ->orderBy('order')
+            ->orderBy('name')
+            ->get();
+
+        // Jika ada slug kategori, jadikan sebagai kategori aktif
+        $activeCategory = null;
+        if ($slug) {
+            $activeCategory = Category::where('slug', $slug)->first();
+        }
+
+        // Filter produk: semua atau per kategori aktif (+ anak-anaknya)
+        $productQuery = Product::with('images');
+
+        if ($activeCategory) {
+            // Sertakan anak kategori langsung (opsional: bisa diperluas rekursif jika perlu)
+            $categoryIds = collect([$activeCategory->id])
+                ->merge($activeCategory->children->pluck('id'))
+                ->unique()
+                ->values();
+
+            $productQuery->whereIn('category_id', $categoryIds);
+        }
+
+        // (Tetapkan grouping yang kamu punya saat ini)
+        $products = $productQuery
+            ->paginate(12)
+            ->withQueryString();
+
+        // Ambil sub-group products seperti existing-mu
         $groupedProducts = Product::whereNotNull('group_product')
             ->select('group_product')
             ->distinct()
             ->pluck('group_product');
 
-        // Ambil semua produk yang termasuk dalam grup
         $subGroups = Product::whereIn('group_product', $groupedProducts)
             ->orderBy('group_product')
             ->get()
             ->groupBy('group_product');
 
-
-        return view('produk', compact('products', 'subGroups'));
+        return view('produk', [
+            'products'       => $products,
+            'subGroups'      => $subGroups,
+            'categories'     => $categories,
+            'activeCategory' => $activeCategory,
+        ]);
     }
 
 
     public function showInCategory($slugcategory, $slugproduct)
     {
         $category = \App\Models\Category::where('slug', $slugcategory)->firstOrFail();
-        $product = \App\Models\Product::where('slug', $slugproduct)->where('category_id', $category->id)->firstOrFail();
-
-//dd($product);
+        $product = \App\Models\Product::where('slug', $slugproduct)
+            ->where('category_id', $category->id)
+            ->firstOrFail();
 
         return view('detail_produk', compact('product', 'category'));
     }

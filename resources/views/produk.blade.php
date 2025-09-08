@@ -24,58 +24,25 @@
     }
 </style>
 @section('content')
-@php
-    // Ambil segment kedua setelah "/category/"
-    $currentCategory = request()->segment(2);
-@endphp
+    @php
+        // Ambil segment kedua setelah "/category/"
+        $currentCategory = request()->segment(2);
+    @endphp
     <section>
         <div class="container">
             <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 gx-3 row-gap-3 gx-xl-4">
-                <div class="col">
-                    <a href="{{ url('/category/pneumatic_cylinders') }}" class="text-decoration-none">
-                        <div class="card custom-card border-0 rounded-0 {{ $currentCategory === 'pneumatic_cylinders' ? 'active' : '' }}">
-                            <div class="card-body">
-                                <h5 class="card-title">Pneumatic Cylinders</h5>
+                @foreach ($categories as $cat)
+                    <div class="col">
+                        <a href="{{ url('/category/' . $cat->slug) }}" class="text-decoration-none">
+                            <div
+                                class="card custom-card border-0 rounded-0 {{ $currentCategory === $cat->slug ? 'active' : '' }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $cat->local_title }}</h5>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ url('/category/air_source_treatment_units') }}" class="text-decoration-none">
-                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'air_source_treatment_units' ? 'active' : '' }}">
-                            <div class="card-body">
-                                <h5 class="card-title">Air Source Treatment Units</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ url('/category/directional_valves') }}" class="text-decoration-none ">
-                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'directional_valves' ? 'active' : '' }}">
-                            <div class="card-body">
-                                <h5 class="card-title">Directional Valves</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ url('/category/fluid_solenoid_valve') }}" class="text-decoration-none">
-                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'fluid_solenoid_valve' ? 'active' : '' }}">
-                            <div class="card-body">
-                                <h5 class="card-title">Fluid Solenoid Valve</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ url('/category/pneumatic_accessories') }}" class="text-decoration-none">
-                        <div class="card border-0 custom-card rounded-0 {{ $currentCategory === 'pneumatic_accessories' ? 'active' : '' }}">
-                            <div class="card-body">
-                                <h5 class="card-title">Pneumatic Accessories</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -93,7 +60,7 @@
                         </h5>
                         <div class="col py-2">
                             <p class="text-justify">
-                                 @lang('produk.product_subtitle')
+                                @lang('produk.product_subtitle')
                             </p>
                         </div><!-- end col -->
                     </div>
@@ -106,51 +73,23 @@
             <div class="row">
                 <div class="col col-12  col-lg-auto trilling">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <button class="nav-link card border-0 rounded-0 {{ $currentCategory === 'pneumatic_cylinders' ? 'active' : '' }}" id="pills-pneumatic-tab"
-                            data-bs-toggle="pill" data-bs-target="#pills-pneumatic" type="button" role="tab"
-                            aria-controls="pills-pneumatic" aria-selected="true">
-                            <a href="{{ url('/category/pneumatic_cylinders') }}" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Pneumatic Cylinders</h5>
-                                </div>
-                            </a>
-                        </button>
-                        <button class="nav-link card border-0 rounded-0 {{ $currentCategory === 'air_source_treatment_units' ? 'active' : '' }}" id="pills-air-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-pneumatic" type="button" role="tab" aria-controls="pills-air"
-                            aria-selected="false">
-                            <a href="{{ url('/category/air_source_treatment_units') }}" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Air Source Treatment Units</h5>
-                                </div>
-                            </a>
-                        </button>
-                        <button class="nav-link card border-0 rounded-0 {{ $currentCategory === 'directional_valves' ? 'active' : '' }}" id="pills-directional-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-pneumatic" type="button" role="tab"
-                            aria-controls="pills-directional" aria-selected="false">
-                            <a href="{{ url('/category/directional_valves') }}" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Directional Valves</h5>
-                                </div>
-                            </a>
-                        </button>
-                        <button class="nav-link card border-0 rounded-0 {{ $currentCategory === 'fluid_solenoid_valve' ? 'active' : '' }}" id="pills-solenoid-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-pneumatic" type="button" role="tab" aria-controls="pills-solenoid"
-                            aria-selected="false">
-                            <a href="{{ url('/category/fluid_solenoid_valve') }}" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Fluid Solenoid Valve</h5>
-                                </div>
-                            </a>
-                        </button>
-                        <button class="nav-link card border-0 rounded-0 {{ $currentCategory === 'pneumatic_accessories' ? 'active' : '' }}" id="pills-accessories-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-pneumatic" type="button" role="tab"
-                            aria-controls="pills-accessories" aria-selected="false">
-                            <a href="{{ url('/category/pneumatic_accessories') }}" class="text-decoration-none">
-                                <div class="card-body p-2">
-                                    <h5 class="card-produk">Pneumatic Accessories</h5>
-                                </div>
-                            </a>
-                        </button>
+                        @foreach ($categories as $cat)
+                            @php
+                                // bikin id unik untuk tab
+                                $tabId = 'pills-' . Str::slug($cat->slug, '-');
+                            @endphp
+                            <button
+                                class="nav-link card border-0 rounded-0 {{ $currentCategory === $cat->slug ? 'active' : '' }}"
+                                id="{{ $tabId }}-tab" data-bs-toggle="pill" data-bs-target="#pills-content"
+                                {{-- semua ke konten yang sama karena konten di-render dengan $products --}} type="button" role="tab" aria-controls="{{ $tabId }}"
+                                aria-selected="{{ $currentCategory === $cat->slug ? 'true' : 'false' }}">
+                                <a href="{{ url('/category/' . $cat->slug) }}" class="text-decoration-none">
+                                    <div class="card-body p-2">
+                                        <h5 class="card-produk">{{ $cat->local_title }}</h5>
+                                    </div>
+                                </a>
+                            </button>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col col-12 col-lg">
@@ -220,8 +159,8 @@
                             aria-labelledby="pills-solenoid-tab" tabindex="0">
                             Konten untuk Fluid Solenoid Valve
                         </div>
-                        <div class="tab-pane fade text-dark" id="pills-air" role="tabpanel"
-                            aria-labelledby="pills-air-tab" tabindex="0">
+                        <div class="tab-pane fade text-dark" id="pills-air" role="tabpanel" aria-labelledby="pills-air-tab"
+                            tabindex="0">
                             Konten untuk Air Source Treatment Units
                         </div>
                         <div class="tab-pane fade text-dark" id="pills-accessories" role="tabpanel"
@@ -237,7 +176,7 @@
             </div>
         </div>
     </section>
-     <script>
+    <script>
         $('#nav-produk').addClass('active');
     </script>
 @endsection

@@ -15,6 +15,7 @@ class FrontCategoryController extends Controller
     {
         $categories = Category::all();
         dump($categories[0]->name);
+
         return view('kategori-produk', compact('categories'));
     }
 
@@ -24,6 +25,35 @@ class FrontCategoryController extends Controller
         //$products = $category->products; // pastikan relasi `products()` ada di model Category
         // dd($category->id);
         // dump($products);
+
+        // Segment ke-2 setelah /category/{slug?}
+        $slug = $slugcategory;
+
+        // Ambil kategori root (parent_id NULL), aktif saja
+        $categories = Category::whereNull('parent_id')
+            ->where('status', true)
+            ->orderBy('order')
+            ->orderBy('name')
+            ->get();
+
+        // Jika ada slug kategori, jadikan sebagai kategori aktif
+        $activeCategory = null;
+        if ($slug) {
+            $activeCategory = Category::where('slug', $slug)->first();
+        }
+
+        // Filter produk: semua atau per kategori aktif (+ anak-anaknya)
+        $productQuery = Product::with('images');
+
+        if ($activeCategory) {
+            // Sertakan anak kategori langsung (opsional: bisa diperluas rekursif jika perlu)
+            $categoryIds = collect([$activeCategory->id])
+                ->merge($activeCategory->children->pluck('id'))
+                ->unique()
+                ->values();
+
+            $productQuery->whereIn('category_id', $categoryIds);
+        }
 
 
         // Ambil produk dengan pagination
@@ -43,6 +73,6 @@ class FrontCategoryController extends Controller
             ->orderBy('group_product')
             ->get()
             ->groupBy('group_product');
-        return view('produk', compact('category', 'products', 'subGroups'));
+        return view('produk', compact('category', 'products', 'subGroups', 'categories', 'activeCategory'));
     }
 }
