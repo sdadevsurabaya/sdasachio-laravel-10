@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('eng_title')->nullable()->after('ina_title');
             $table->text('ina_desc')->nullable()->after('eng_title');
             $table->text('eng_desc')->nullable()->after('ina_desc');
-            $table->integer('order')->nullable()->after('eng_desc'); // field angka
         });
     }
 
