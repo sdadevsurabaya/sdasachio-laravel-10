@@ -33,7 +33,6 @@ class FrontCategoryController extends Controller
         $categories = Category::whereNull('parent_id')
             ->where('status', true)
             ->orderBy('order')
-            ->orderBy('name')
             ->get();
 
         // Jika ada slug kategori, jadikan sebagai kategori aktif
