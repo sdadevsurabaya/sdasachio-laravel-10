@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>SIDAR SDA</title>
+    <title>SACHIO Dashboard</title>
 
     <!-- color-modes:js -->
     <script src="{{ asset('assets/js/color-modes.js') }}"></script>
@@ -42,5 +42,5 @@
     <link rel="stylesheet" href="{{ asset('assets/css/stylev2.css') }}">
     <!-- End layout styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap5.css') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/logo/icon-new-24.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo/logo-sachio.png') }}">
 </head>

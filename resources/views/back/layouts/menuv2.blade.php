@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="offcanvas-header d-block text-center position-relative py-4">
                 <div class="position-relative d-inline-block mb-1">
-                    <img src="{{ asset('images/users/user.png') }}" class="img-thumbnail rounded-circle border-0 bg-dark" width="66"
+                    <img src="{{ asset('images/user.png') }}" class="img-thumbnail rounded-circle border-0 bg-dark" width="66"
                         alt="user-image">
                     {{-- <img src="/ui/img/bunga-kopi.svg" class="img-fluid position-absolute top-0 end-0" width="20"
                         alt="" style="transform: translateY(-18%) translateX(54%);"> --}}

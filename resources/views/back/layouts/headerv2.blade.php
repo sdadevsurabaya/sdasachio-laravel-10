@@ -229,7 +229,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="w-30px h-30px ms-1 rounded-circle" src="{{ asset('images/users/user.png') }}"
+                    <img class="w-30px h-30px ms-1 rounded-circle" src="{{ asset('images/user.png') }}"
                         alt="profile">
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">

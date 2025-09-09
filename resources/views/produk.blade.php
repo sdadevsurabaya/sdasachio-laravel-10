@@ -159,7 +159,7 @@
                             aria-labelledby="pills-pneumatic-tab" tabindex="0">
                             @foreach ($products as $product)
                                 <div class="row mb-3">
-                                    <div class="col-4 col-lg-2 align-self-center">
+                                    <div class="col-12 col-lg-2 align-self-center">
                                         {{-- <img src="../assets/img/gambar/image-home-pneumatics.png" class="img-fluid"
                                             alt="Pneumatics"> --}}
                                         @php
@@ -168,7 +168,7 @@
                                         <img src="{{ $mainImage ? asset('storage/' . $mainImage->image) : asset('assets/img/default.png') }}"
                                             class="img-fluid" alt="{{ $product->name }}">
                                     </div>
-                                    <div class="col-8 col-lg-10">
+                                    <div class="col-12 col-lg-10">
                                         <div class="col py-2 item d-flex justify-content-between">
 
                                             @php
@@ -191,7 +191,7 @@
                                                 </div>
                                             @endif
                                             @if ($product->group_product && isset($subGroups[$product->group_product]))
-                                                <div class="col-3 select mb-2 ">
+                                                <div class="col-4 select mb-2 ">
                                                     <label class="form-label fw-semibold">Subordinate Category</label>
 
                                                     <select class="form-select"
