@@ -7,25 +7,22 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Jalankan migrasi.
+     * Run the migrations.
      */
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('ina_title')->nullable()->after('status');
-            $table->string('eng_title')->nullable()->after('ina_title');
-            $table->text('ina_desc')->nullable()->after('eng_title');
-            $table->text('eng_desc')->nullable()->after('ina_desc');
+            $table->integer('order')->nullable()->after('eng_desc');
         });
     }
 
     /**
-     * Rollback migrasi.
+     * Reverse the migrations.
      */
     public function down(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn(['ina_title', 'eng_title', 'ina_desc', 'eng_desc']);
+            $table->dropColumn('order');
         });
     }
 };
