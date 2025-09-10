@@ -12,18 +12,25 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->query('search');
+        $search       = $request->query('search');
+        $categorySlug = $request->query('category');
+
+        $categories = Category::where('status', true)->get();
 
         $products = Product::with('category')
             ->when($search, function ($query, $search) {
                 $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('sku', 'like', '%' . $search . '%');
             })
-            // ->latest()
-            ->orderBy('id', 'asc') // ganti dari ->latest() menjadi ->orderBy('id', 'asc')
+            ->when($categorySlug, function ($query, $categorySlug) {
+                $query->whereHas('category', function ($q) use ($categorySlug) {
+                    $q->where('slug', $categorySlug);
+                });
+            })
+            ->orderBy('id', 'asc')
             ->paginate(10);
 
-        return view('back.admin.product.index', compact('products', 'search'));
+        return view('back.admin.product.index', compact('products', 'search', 'categories'));
     }
 
     public function show(Product $product)
@@ -33,18 +40,21 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        return view('back.admin.product.create', compact('categories'));
+        $categories = Category::where('status', true)->get();
+        $maxOrder   = Product::max('order') + 1;
+        return view('back.admin.product.create', compact('categories', 'maxOrder'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required|string',
-            'category_id' => 'required|exists:categories,id',
-            'description' => 'nullable|string',
-            'sku'         => 'nullable|string',
-            'image'       => 'nullable|image|max:2048',
+            'name'                 => 'required|string',
+            'category_id'          => 'required|exists:categories,id',
+            'description'          => 'nullable|string',
+            'sku'                  => 'nullable|string',
+            'image'                => 'nullable|image|max:2048',
+            'order'                => 'nullable',
+            'feature_keys' => 'nullable',
         ]);
 
         $imagePath = null;
@@ -52,15 +62,21 @@ class ProductController extends Controller
             $imagePath = $request->file('image')->store('products', 'public');
         }
 
+        // Simpan fitur
+        $features = collect($request->input('feature_keys', []))
+            ->combine($request->input('feature_values', []))
+            ->filter();
+
         $product = Product::create([
-            'name'        => $request->name,
-            'sku'         => $request->sku,
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'image'       => $imagePath,
+            'name'         => $request->name,
+            'sku'          => $request->sku,
+            'category_id'  => $request->category_id,
+            'description'  => $request->description,
+            'image'        => $imagePath,
+            'order'        => $request->order,
+            'feature_keys' => $features,
         ]);
 
-        // Upload images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $img) {
                 $path = $img->store('products', 'public');
@@ -68,12 +84,6 @@ class ProductController extends Controller
             }
         }
 
-        // Simpan fitur
-        $features = collect($request->input('feature_keys', []))
-            ->combine($request->input('feature_values', []))
-            ->filter();
-
-        $product->features     = $features;
         $product->download_url = $request->input('download_url');
         $product->save();
 
@@ -82,82 +92,78 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = Category::all();
-
+        $categories    = Category::where('status', true)->get();
+        $maxOrder      = Product::max('order') + 1;
         $prevProductId = Product::where('id', '<', $product->id)->max('id');
         $nextProductId = Product::where('id', '>', $product->id)->min('id');
-
-        return view('back.admin.product.edit', compact('product', 'categories', 'prevProductId', 'nextProductId'));
-        // return view('back.admin.product.edit', compact('product', 'categories'));
+        return view('back.admin.product.edit', compact('product', 'categories', 'prevProductId', 'nextProductId', 'maxOrder'));
     }
 
     public function update(Request $request, Product $product)
     {
-        // 1. VALIDASI DATA
+        // Deteksi apakah ini update dari inline edit (hanya field tertentu)
+        if ($request->hasAny(['name', 'sku', 'description', 'status', 'order']) && ! $request->has('category_id')) {
+            $request->validate([
+                'name'        => 'sometimes|required|string|max:255',
+                'sku'         => 'sometimes|required|string|max:255|unique:products,sku,' . $product->id,
+                'description' => 'sometimes|nullable|string',
+                'status'      => 'sometimes|required|boolean',
+                'order'       => 'sometimes|required',
+            ]);
+
+            $product->update($request->only(['name', 'sku', 'description', 'status', 'order']));
+            return response()->json(['success' => true]);
+        }
+
+        // Update dari form edit lengkap
         $request->validate([
-            'name'          => 'required|string|max:255',
-            'category_id'   => 'required|exists:categories,id',
-            'description'   => 'nullable|string',
-            'sku'           => 'nullable|string',
-            'download_url'  => 'nullable|string',
-            // Validasi untuk gambar galeri
-            'images'        => 'nullable|array',
-            'images.*'      => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Validasi untuk setiap gambar baru
-            // Validasi untuk gambar yang akan dihapus
-            'delete_images'   => 'nullable|array',
-            'delete_images.*' => 'integer|exists:product_images,id', // Pastikan ID-nya ada di database
-            'status' => 'required|boolean',
+            'name'                 => 'required|string|max:255',
+            'category_id'          => 'required|exists:categories,id',
+            'description'          => 'nullable|string',
+            'sku'                  => 'nullable|string|max:255|unique:products,sku,' . $product->id,
+            'download_url'         => 'nullable|string',
+            'images'               => 'nullable|array',
+            'images.*'             => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'delete_images'        => 'nullable|array',
+            'delete_images.*'      => 'integer|exists:product_images,id',
+            'status'               => 'required|boolean',
+            'order'                => 'nullable',
+            'feature_keys' => 'nullable',
         ]);
 
-        // 2. HAPUS GAMBAR LAMA (DARI GALERI) YANG DICENTANG
         if ($request->has('delete_images')) {
             foreach ($request->delete_images as $imageId) {
                 $imageToDelete = ProductImage::find($imageId);
                 if ($imageToDelete) {
-                    // Karena Anda menyimpan di folder public, kita gunakan File::delete
-                    // public_path() akan mengarahkan ke folder 'public' di root proyek Anda
-                    $filePath = public_path($imageToDelete->image);
+                    $filePath = public_path('storage/' . $imageToDelete->image);
                     if (File::exists($filePath)) {
                         File::delete($filePath);
                     }
-
-                    // Hapus record dari database
                     $imageToDelete->delete();
                 }
             }
         }
 
-        // 3. UPLOAD GAMBAR BARU (KE GALERI)
-        // Ini adalah blok kode Anda, sudah benar.
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $img) {
-                $imageName = time() . '_' . $img->hashName();
-                $destinationPath = 'storage/products';
+                $imageName       = time() . '_' . $img->hashName();
+                $destinationPath = public_path('storage/products');
                 $img->move($destinationPath, $imageName);
                 $dbPath = 'products/' . $imageName;
-
-                // Simpan path ke relasi 'images' milik produk
                 $product->images()->create(['image' => $dbPath]);
             }
         }
 
-        // 4. UPDATE DATA UTAMA PRODUK
-        $productData = $request->only(['name', 'sku', 'category_id', 'description', 'download_url', 'status']);
-
-        // Kelola fitur, kode Anda sudah bagus
-        // Simpan fitur
         $features = collect($request->input('feature_keys', []))
             ->combine($request->input('feature_values', []))
             ->filter();
 
         $productData['features'] = $features;
+        // dd($productData['features']);
 
-        // Lakukan update data produk
         $product->update($productData);
 
-        // return redirect()->route('back.admin.product.index')->with('success', 'Produk berhasil diperbarui.');
         return redirect()->route('back.admin.product.edit', $product->id)->with('success', 'Produk berhasil diperbarui.');
-
     }
 
     public function destroy(Product $product)

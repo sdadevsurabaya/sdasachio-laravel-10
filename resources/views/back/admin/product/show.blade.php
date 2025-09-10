@@ -60,7 +60,7 @@
 
                     @if ($product->features)
                         <h5 class="mb-2">FEATURES</h5>
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled text-justify">
                             @foreach ($product->features as $key => $val)
                                 <li class="mb-1">
                                     <span class="text-primary">●</span>

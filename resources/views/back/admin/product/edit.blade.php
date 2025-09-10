@@ -1,50 +1,70 @@
 @extends('back.layouts.layout')
-
 @section('content')
     <section class="page-section">
         <div class="container">
             <h2>Edit Produk</h2>
 
-            <form action="{{ route('back.admin.product.update', $product) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('back.admin.product.update', $product) }}" method="POST" enctype="multipart/form-data"
+                id="productForm">
                 @csrf
                 @method('PUT')
 
                 <div class="mb-3">
                     <label for="name">Nama Produk</label>
-                    <input type="text" name="name" class="form-control" value="{{ $product->name }}" required>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                        value="{{ old('name', $product->name) }}" required>
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="sku">SKU</label>
-                    <input type="text" name="sku" class="form-control" value="{{ $product->sku }}">
+                    <input type="text" name="sku" id="sku"
+                        class="form-control @error('sku') is-invalid @enderror" value="{{ old('sku', $product->sku) }}">
+                    @error('sku')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="category_id">Kategori</label>
-                    <select name="category_id" class="form-control" required>
+                    <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @selected($product->category_id == $category->id)>
+                            <option value="{{ $category->id }}" @selected(old('category_id', $product->category_id) == $category->id)>
                                 {{ $category->name }}
                             </option>
                         @endforeach
                     </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="order">Order</label>
+                    <input type="number" name="order" class="form-control @error('order') is-invalid @enderror"
+                        value="{{ old('order', $product->order ?? $maxOrder) }}" min="1">
+                    @error('order')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="description">Deskripsi</label>
-                    <textarea name="description" id="editor" class="form-control" rows="6">{{ $product->description }}</textarea>
+                    <textarea name="description" id="editor" class="form-control @error('description') is-invalid @enderror"
+                        rows="6">{{ old('description', $product->description) }}</textarea>
+                    @error('description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                {{-- File: resources/views/products/edit.blade.php (contoh) --}}
-
-                {{-- Tambahkan sedikit CSS untuk memberi efek visual pada gambar yang akan dihapus --}}
                 <style>
                     .image-container-existing {
                         position: relative;
                     }
 
                     .image-container-existing input[type="checkbox"] {
-                        /* Sembunyikan checkbox asli */
                         opacity: 0;
                         position: absolute;
                         width: 100%;
@@ -53,17 +73,13 @@
                         z-index: 2;
                     }
 
-                    /* Style untuk gambar saat checkbox dicentang */
                     .image-container-existing input[type="checkbox"]:checked+img {
                         opacity: 0.4;
                         border: 3px solid #dc3545;
-                        /* Merah */
                     }
 
-                    /* Tambahkan ikon 'X' di atas gambar saat dicentang */
                     .image-container-existing input[type="checkbox"]:checked::after {
                         content: '\2716';
-                        /* Kode untuk tanda silang '✖' */
                         position: absolute;
                         top: 50%;
                         left: 50%;
@@ -76,10 +92,8 @@
                         border-radius: 50%;
                         pointer-events: none;
                         z-index: 1;
-                        /* Agar tidak mengganggu klik */
                     }
 
-                    /* CSS untuk preview upload baru dari jawaban sebelumnya */
                     #image-preview-container {
                         display: flex;
                         flex-wrap: wrap;
@@ -120,20 +134,33 @@
                         line-height: 1;
                         padding-bottom: 2px;
                     }
+
+                    .feature-row {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+
+                    .feature-row .col {
+                        flex: 1;
+                    }
+
+                    .feature-row .remove-btn {
+                        background-color: #dc3545;
+                        color: white;
+                        border: none;
+                        border-radius: 0.25rem;
+                        padding: 5px 10px;
+                        cursor: pointer;
+                    }
                 </style>
 
-                {{-- GAMBAR YANG SUDAH ADA --}}
                 @if ($product->images->count())
                     <div class="mb-3">
                         <label class="form-label">Gambar Produk Saat Ini (Klik untuk hapus)</label>
                         <div class="d-flex flex-wrap gap-3">
                             @foreach ($product->images as $img)
                                 <div class="image-container-existing">
-                                    {{--
-                                    Checkbox ini kuncinya.
-                                    - name="delete_images[]" akan mengirim array ID gambar yang mau dihapus.
-                                    - value="{{ $img->id }}" adalah ID dari gambar di database.
-                                    --}}
                                     <input type="checkbox" name="delete_images[]" id="check{{ $img->id }}"
                                         value="{{ $img->id }}" title="Pilih untuk hapus gambar ini">
                                     <img src="{{ asset('storage/' . $img->image) }}" width="150" height="150"
@@ -144,130 +171,59 @@
                     </div>
                 @endif
 
-                {{-- UPLOAD GAMBAR BARU --}}
                 <div class="mb-3">
                     <label for="images" class="form-label">Tambah Gambar Produk Baru (bisa banyak)</label>
-                    <input type="file" id="images" name="images[]" class="form-control" multiple accept="image/*">
-
-                    {{-- Container untuk menampilkan preview gambar BARU --}}
+                    <input type="file" id="images" name="images[]"
+                        class="form-control @error('images.*') is-invalid @enderror" multiple accept="image/*">
                     <div id="image-preview-container"></div>
+                    @error('images.*')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                {{-- SCRIPT UNTUK PREVIEW GAMBAR BARU --}}
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-
-                        // BAGIAN UNTUK GAMBAR LAMA SUDAH DIHAPUS.
-                        // Fungsionalitas check/uncheck sekarang ditangani oleh CSS dan browser.
-
-                        // ===================================================================
-                        // BAGIAN UNTUK PRATINJAU GAMBAR BARU (TIDAK ADA PERUBAHAN)
-                        // ===================================================================
-                        const imageInput = document.getElementById('images');
-                        const previewContainer = document.getElementById('image-preview-container');
-
-                        // Hanya jalankan jika elemen input dan preview ada
-                        if (imageInput && previewContainer) {
-                            let fileStore = new DataTransfer();
-
-                            imageInput.addEventListener('change', function(event) {
-                                for (const file of event.target.files) {
-                                    fileStore.items.add(file);
-                                }
-                                imageInput.files = fileStore.files;
-                                renderPreviews();
-                            });
-
-                            function renderPreviews() {
-                                previewContainer.innerHTML = '';
-                                Array.from(fileStore.files).forEach((file, index) => {
-                                    const reader = new FileReader();
-                                    reader.onload = function(e) {
-                                        const previewItem = document.createElement('div');
-                                        previewItem.className = 'preview-item';
-                                        const img = document.createElement('img');
-                                        img.src = e.target.result;
-                                        const deleteBtn = document.createElement('button');
-                                        deleteBtn.type = 'button';
-                                        deleteBtn.className = 'delete-btn';
-                                        deleteBtn.innerHTML = '&times;';
-                                        deleteBtn.dataset.index = index;
-
-                                        deleteBtn.addEventListener('click', function() {
-                                            // Jika Anda juga ingin menghilangkan konfirmasi di sini,
-                                            // hapus baris if(confirm(...)) dan kurung kurawalnya.
-                                            if (confirm(
-                                                    'Anda yakin ingin menghapus pratinjau gambar ini?')) {
-                                                const idxToRemove = parseInt(this.dataset.index, 10);
-                                                const newFileStore = new DataTransfer();
-                                                Array.from(fileStore.files).forEach((f, i) => {
-                                                    if (i !== idxToRemove) newFileStore.items.add(
-                                                        f);
-                                                });
-                                                fileStore = newFileStore;
-                                                imageInput.files = fileStore.files;
-                                                renderPreviews();
-                                            }
-                                        });
-
-                                        previewItem.appendChild(img);
-                                        previewItem.appendChild(deleteBtn);
-                                        previewContainer.appendChild(previewItem);
-                                    }
-                                    reader.readAsDataURL(file);
-                                });
-                            }
-                        } else {
-                            console.error('Peringatan: Elemen #images atau #image-preview-container tidak ditemukan.');
-                        }
-                    });
-                </script>
-
-                {{-- FEATURES --}}
                 <div class="mb-3">
-                    <label for="features">FEATURES</label>
+                    <label for="features">Fitur</label>
                     <div id="features-list">
                         @if ($product->features && is_array($product->features))
                             @foreach ($product->features as $key => $value)
-                                <div class="row mb-2">
+                                <div class="row mb-2 feature-row">
                                     <div class="col"><input type="text" name="feature_keys[]" class="form-control"
                                             value="{{ $key }}" placeholder="Fitur"></div>
                                     <div class="col"><input type="text" name="feature_values[]" class="form-control"
                                             value="{{ $value }}" placeholder="Nilai"></div>
+                                    <button type="button" class="remove-btn"
+                                        onclick="this.parentElement.remove()">Hapus</button>
                                 </div>
                             @endforeach
                         @else
-                            <div class="row mb-2">
+                            <div class="row mb-2 feature-row">
                                 <div class="col"><input type="text" name="feature_keys[]" class="form-control"
                                         placeholder="Fitur (misal: Working Medium)"></div>
                                 <div class="col"><input type="text" name="feature_values[]" class="form-control"
                                         placeholder="Nilai (misal: Double Action)"></div>
+                                <button type="button" class="remove-btn"
+                                    onclick="this.parentElement.remove()">Hapus</button>
                             </div>
                         @endif
                     </div>
-                    <button type="button" onclick="addFeatureRow()" class="btn btn-sm btn-secondary">+ Tambah
+                    <button type="button" onclick="addFeatureRow()" class="btn btn-sm btn-secondary mt-2">+ Tambah
                         Fitur</button>
+                    @error('feature_keys.*')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    @error('feature_values.*')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                <script>
-                    function addFeatureRow() {
-                        const html = `
-                            <div class="row mb-2">
-                                <div class="col"><input type="text" name="feature_keys[]" class="form-control" placeholder="Fitur"></div>
-                                <div class="col"><input type="text" name="feature_values[]" class="form-control" placeholder="Nilai"></div>
-                            </div>
-                        `;
-                        document.getElementById('features-list').insertAdjacentHTML('beforeend', html);
-                    }
-                </script>
-
-
-
-                {{-- Download URL --}}
                 <div class="mb-3">
                     <label for="download_url">Download File (URL)</label>
-                    <input type="text" name="download_url" class="form-control" placeholder="https://..."
-                        value="{{ $product->download_url }}">
+                    <input type="text" name="download_url"
+                        class="form-control @error('download_url') is-invalid @enderror" placeholder="https://..."
+                        value="{{ old('download_url', $product->download_url) }}">
+                    @error('download_url')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
@@ -283,9 +239,6 @@
                     @enderror
                 </div>
 
-
-
-                {{-- <button type="submit" class="btn btn-primary">Update Produk</button> --}}
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <div>
                         @if ($prevProductId)
@@ -309,7 +262,6 @@
                         @endif
                     </div>
                 </div>
-
             </form>
         </div>
     </section>
@@ -318,6 +270,80 @@
 @section('scripts')
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor.create(document.querySelector('#editor')).catch(error => console.error(error));
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CKEditor
+            const editorElement = document.querySelector('#editor');
+            if (editorElement) {
+                ClassicEditor
+                    .create(editorElement)
+                    .catch(error => console.error('CKEditor Error:', error));
+            }
+
+            // Image preview for new uploads
+            const imageInput = document.getElementById('images');
+            const previewContainer = document.getElementById('image-preview-container');
+            let fileStore = new DataTransfer();
+
+            if (imageInput && previewContainer) {
+                imageInput.addEventListener('change', function(event) {
+                    for (const file of event.target.files) {
+                        fileStore.items.add(file);
+                    }
+                    imageInput.files = fileStore.files;
+                    renderPreviews();
+                });
+
+                function renderPreviews() {
+                    previewContainer.innerHTML = '';
+                    Array.from(fileStore.files).forEach((file, index) => {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const previewItem = document.createElement('div');
+                            previewItem.className = 'preview-item';
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            const deleteBtn = document.createElement('button');
+                            deleteBtn.type = 'button';
+                            deleteBtn.className = 'delete-btn';
+                            deleteBtn.innerHTML = '&times;';
+                            deleteBtn.dataset.index = index;
+
+                            deleteBtn.addEventListener('click', function() {
+                                if (confirm(
+                                    'Anda yakin ingin menghapus pratinjau gambar ini?')) {
+                                    const idxToRemove = parseInt(this.dataset.index, 10);
+                                    const newFileStore = new DataTransfer();
+                                    Array.from(fileStore.files).forEach((f, i) => {
+                                        if (i !== idxToRemove) newFileStore.items.add(
+                                        f);
+                                    });
+                                    fileStore = newFileStore;
+                                    imageInput.files = fileStore.files;
+                                    renderPreviews();
+                                }
+                            });
+
+                            previewItem.appendChild(img);
+                            previewItem.appendChild(deleteBtn);
+                            previewContainer.appendChild(previewItem);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                }
+            } else {
+                console.error('Peringatan: Elemen #images atau #image-preview-container tidak ditemukan.');
+            }
+        });
+
+        function addFeatureRow() {
+            const html = `
+                <div class="row mb-2 feature-row">
+                    <div class="col"><input type="text" name="feature_keys[]" class="form-control" placeholder="Fitur"></div>
+                    <div class="col"><input type="text" name="feature_values[]" class="form-control" placeholder="Nilai"></div>
+                    <button type="button" class="remove-btn" onclick="this.parentElement.remove()">Hapus</button>
+                </div>
+            `;
+            document.getElementById('features-list').insertAdjacentHTML('beforeend', html);
+        }
     </script>
 @endsection

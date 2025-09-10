@@ -15,6 +15,8 @@ class Product extends Model
         'category_id',
         'parent_id',
         'status',
+        'order',
+        'features',
     ];
 
     // Relasi ke kategori
