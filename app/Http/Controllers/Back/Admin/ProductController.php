@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -27,7 +28,8 @@ class ProductController extends Controller
                     $q->where('slug', $categorySlug);
                 });
             })
-            ->orderBy('id', 'asc')
+            ->orderBy('order', 'asc')
+            // ->orderBy('id', 'asc')
             ->paginate(10);
 
         return view('back.admin.product.index', compact('products', 'search', 'categories'));
@@ -48,12 +50,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'                 => 'required|string',
-            'category_id'          => 'required|exists:categories,id',
-            'description'          => 'nullable|string',
-            'sku'                  => 'nullable|string',
-            'image'                => 'nullable|image|max:2048',
-            'order'                => 'nullable',
+            'name'         => 'required|string',
+            'category_id'  => 'required|exists:categories,id',
+            'description'  => 'nullable|string',
+            'sku'          => 'nullable|string',
+            'image'        => 'nullable|image|max:2048',
+            'order'        => 'nullable',
             'feature_keys' => 'nullable',
         ]);
 
@@ -66,15 +68,16 @@ class ProductController extends Controller
         $features = collect($request->input('feature_keys', []))
             ->combine($request->input('feature_values', []))
             ->filter();
-
+        // dd($request->sku);
         $product = Product::create([
             'name'         => $request->name,
-            'sku'          => $request->sku,
+            'sku'          => Str::slug($request->sku),
             'category_id'  => $request->category_id,
             'description'  => $request->description,
             'image'        => $imagePath,
             'order'        => $request->order,
             'feature_keys' => $features,
+            'slug'         => Str::slug($request->sku),
         ]);
 
         if ($request->hasFile('images')) {
@@ -117,18 +120,18 @@ class ProductController extends Controller
 
         // Update dari form edit lengkap
         $request->validate([
-            'name'                 => 'required|string|max:255',
-            'category_id'          => 'required|exists:categories,id',
-            'description'          => 'nullable|string',
-            'sku'                  => 'nullable|string|max:255|unique:products,sku,' . $product->id,
-            'download_url'         => 'nullable|string',
-            'images'               => 'nullable|array',
-            'images.*'             => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'delete_images'        => 'nullable|array',
-            'delete_images.*'      => 'integer|exists:product_images,id',
-            'status'               => 'required|boolean',
-            'order'                => 'nullable',
-            'feature_keys' => 'nullable',
+            'name'            => 'required|string|max:255',
+            'category_id'     => 'required|exists:categories,id',
+            'description'     => 'nullable|string',
+            'sku'             => 'nullable|string|max:255|unique:products,sku,' . $product->id,
+            'download_url'    => 'nullable|string',
+            'images'          => 'nullable|array',
+            'images.*'        => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'delete_images'   => 'nullable|array',
+            'delete_images.*' => 'integer|exists:product_images,id',
+            'status'          => 'required|boolean',
+            'order'           => 'nullable',
+            'feature_keys'    => 'nullable',
         ]);
 
         if ($request->has('delete_images')) {

@@ -14,6 +14,23 @@
                 </div>
             </div>
 
+            <!-- Image Detail Modal -->
+            <div class="modal fade" id="imageDetailModal" tabindex="-1" aria-labelledby="imageDetailModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageDetailModalLabel">Image Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img id="modalImage" src="" class="img-fluid" alt="Product Image">
+                            <p class="mt-3" id="modalImageName"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <h2>Produk</h2>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-6">
@@ -57,8 +74,8 @@
                                 <th>SKU</th>
                                 <th>Kategori</th>
                                 <th>Gambar</th>
-                                <th>Status</th>
                                 <th>Order</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -77,18 +94,23 @@
                                                 <div class="d-flex flex-wrap gap-2">
                                                     @foreach ($product->images as $img)
                                                         <img src="{{ asset('storage/' . $img->image) }}" width="100"
-                                                            class="img-thumbnail">
+                                                            class="img-thumbnail clickable-image" data-bs-toggle="modal"
+                                                            data-bs-target="#imageDetailModal"
+                                                            data-image="{{ asset('storage/' . $img->image) }}"
+                                                            data-image-name="{{ basename($img->image) }}"
+                                                            data-image-title="{{ $product->name }}"
+                                                            style="cursor: pointer;">
                                                     @endforeach
                                                 </div>
                                             </div>
                                         @endif
                                     </td>
+                                    <td class="editable" data-field="order" data-original="{{ $product->order ?? 0 }}">
+                                        {{ $product->order ?? 0 }}</td>
                                     <td class="text-center editable" data-field="status"
                                         data-original="{{ $product->status }}">{!! $product->status
                                             ? '<span class="badge bg-success">Active</span>'
                                             : '<span class="badge bg-danger">Nonaktif</span>' !!}</td>
-                                    <td class="editable" data-field="order" data-original="{{ $product->order ?? 0 }}">
-                                        {{ $product->order ?? 0 }}</td>
                                     <td class="text-nowrap">
                                         <a href="{{ route('back.admin.product.show', $product) }}"
                                             class="btn btn-sm btn-info">Detail</a>
@@ -112,7 +134,8 @@
                                     <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="editDescriptionModalLabel{{ $product->id }}">
+                                                <h5 class="modal-title"
+                                                    id="editDescriptionModalLabel{{ $product->id }}">
                                                     Edit Deskripsi: {{ $product->name }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
@@ -143,7 +166,6 @@
         </div>
     </section>
 @endsection
-
 @section('scripts')
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
@@ -164,6 +186,19 @@
             const bsToast = new bootstrap.Toast(toast);
             bsToast.show();
         }
+
+        // Handle image click to show modal
+        document.querySelectorAll('.clickable-image').forEach(image => {
+            image.addEventListener('click', function() {
+                const modalImageTitle = document.getElementById('imageDetailModalLabel');
+                const modalImage = document.getElementById('modalImage');
+                const modalImageName = document.getElementById('modalImageName');
+                modalImageTitle.textContent = this.dataset.imageTitle
+                modalImage.src = this.dataset.image;
+                modalImageName.textContent = `File Name: ${this.dataset.imageName}`;
+
+            });
+        });
 
         // Add beforeunload event listener for refresh warning
         window.addEventListener('beforeunload', function(e) {
@@ -203,8 +238,7 @@
                         </select>`;
                 } else {
                     cell.innerHTML =
-                        `
-                        <input type="text" class="form-control" value="${originalValue}" data-product-id="${productId}" data-field="${field}">`;
+                        `<input type="text" class="form-control" ${field === "order" ? 'style="width:70px;"' : 'style="width:300px;"'} value="${originalValue}" data-product-id="${productId}" data-field="${field}">`;
                 }
 
                 // Track changes on input

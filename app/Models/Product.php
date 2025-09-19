@@ -17,6 +17,7 @@ class Product extends Model
         'status',
         'order',
         'features',
+        'slug',
     ];
 
     // Relasi ke kategori

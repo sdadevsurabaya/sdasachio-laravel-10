@@ -17,6 +17,10 @@
             <label for="sku">SKU</label>
             <input type="text" name="sku" class="form-control">
         </div>
+        <div class="mb-3">
+            <label for="sku">Order</label>
+            <input type="number" name="order" class="form-control">
+        </div>
 
         <div class="mb-3">
             <label for="category_id">Kategori</label>
