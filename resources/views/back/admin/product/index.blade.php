@@ -141,7 +141,8 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form id="descriptionForm{{ $product->id }}">
+                                                <form id="descriptionForm{{ $product->id }}"
+                                                    enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PATCH')
                                                     <div class="mb-3">
@@ -167,7 +168,11 @@
     </section>
 @endsection
 @section('scripts')
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+
     <script>
         let isEditMode = false;
         let changes = {};
@@ -338,43 +343,114 @@
                 });
         }
 
+        // const editors = {};
+
+        // document.querySelectorAll('[id^=editDescriptionModal]').forEach(modal => {
+        //     const productId = modal.id.replace('editDescriptionModal', '');
+        //     const textarea = document.getElementById(`description${productId}`);
+
+        //     modal.addEventListener('shown.bs.modal', () => {
+        //         if (!editors[productId]) {
+        //             ClassicEditor
+        //                 .create(textarea)
+        //                 .then(editor => {
+        //                     editors[productId] = editor;
+        //                 })
+        //                 .catch(error => {
+        //                     console.error('CKEditor Error:', error);
+        //                 });
+        //         }
+        //     });
+
+        //     modal.addEventListener('hidden.bs.modal', () => {
+        //         if (editors[productId]) {
+        //             editors[productId].destroy().then(() => {
+        //                 delete editors[productId];
+        //             }).catch(error => {
+        //                 console.error('CKEditor Destroy Error:', error);
+        //             });
+        //         }
+        //     });
+        // });
+
+        // document.querySelectorAll('[id^=descriptionForm]').forEach(form => {
+        //     form.addEventListener('submit', function(e) {
+        //         e.preventDefault();
+        //         const productId = this.id.replace('descriptionForm', '');
+        //         const editor = editors[productId];
+        //         const description = editor ? editor.getData() : document.getElementById(
+        //             `description${productId}`).value;
+
+        //         fetch(`{{ url('back/admin/product') }}/${productId}`, {
+        //                 method: 'PATCH',
+        //                 headers: {
+        //                     'Content-Type': 'application/json',
+        //                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        //                 },
+        //                 body: JSON.stringify({
+        //                     description: description
+        //                 })
+        //             })
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 if (data.success) {
+        //                     showToast('Deskripsi berhasil disimpan', 'success');
+        //                     bootstrap.Modal.getInstance(document.getElementById(
+        //                         `editDescriptionModal${productId}`)).hide();
+        //                 } else {
+        //                     showToast('Gagal menyimpan deskripsi', 'error');
+        //                 }
+        //             })
+        //             .catch(error => {
+        //                 console.error('Error:', error);
+        //                 showToast('Terjadi kesalahan', 'error');
+        //             });
+        //     });
+        // });
+    </script>
+    <script>
         const editors = {};
 
         document.querySelectorAll('[id^=editDescriptionModal]').forEach(modal => {
             const productId = modal.id.replace('editDescriptionModal', '');
-            const textarea = document.getElementById(`description${productId}`);
+            const textareaId = `description${productId}`;
 
             modal.addEventListener('shown.bs.modal', () => {
                 if (!editors[productId]) {
-                    ClassicEditor
-                        .create(textarea)
-                        .then(editor => {
-                            editors[productId] = editor;
-                        })
-                        .catch(error => {
-                            console.error('CKEditor Error:', error);
-                        });
+                    $(`#${textareaId}`).summernote({
+                        placeholder: 'Tulis deskripsi produk...',
+                        tabsize: 2,
+                        height: 700,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'italic', 'underline', 'clear']],
+                            ['fontname', ['fontname']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']]
+                        ]
+                    });
+                    editors[productId] = true;
                 }
             });
 
             modal.addEventListener('hidden.bs.modal', () => {
                 if (editors[productId]) {
-                    editors[productId].destroy().then(() => {
-                        delete editors[productId];
-                    }).catch(error => {
-                        console.error('CKEditor Destroy Error:', error);
-                    });
+                    $(`#${textareaId}`).summernote('destroy');
+                    delete editors[productId];
                 }
             });
         });
 
+        // Submit form
         document.querySelectorAll('[id^=descriptionForm]').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const productId = this.id.replace('descriptionForm', '');
-                const editor = editors[productId];
-                const description = editor ? editor.getData() : document.getElementById(
-                    `description${productId}`).value;
+                const textareaId = `description${productId}`;
+                const description = $(`#${textareaId}`).summernote('code');
 
                 fetch(`{{ url('back/admin/product') }}/${productId}`, {
                         method: 'PATCH',
@@ -402,5 +478,45 @@
                     });
             });
         });
+
+        // $(`#${textareaId}`).summernote({
+        //     placeholder: 'Tulis deskripsi produk...',
+        //     tabsize: 2,
+        //     height: 400,
+        //     callbacks: {
+        //         onImageUpload: function(files) {
+        //             let data = new FormData();
+        //             data.append('file', files[0]);
+        //             data.append('_token', '{{ csrf_token() }}');
+
+        //             fetch("{{ url('back/admin/upload-image') }}", {
+        //                     method: 'POST',
+        //                     body: data
+        //                 })
+        //                 .then(response => response.json())
+        //                 .then(data => {
+        //                     if (data.url) {
+        //                         $(`#${textareaId}`).summernote('insertImage', data.url);
+        //                     } else {
+        //                         showToast('Upload gagal', 'error');
+        //                     }
+        //                 })
+        //                 .catch(error => {
+        //                     console.error('Upload error:', error);
+        //                     showToast('Terjadi kesalahan saat upload', 'error');
+        //                 });
+        //         }
+        //     },
+        //     toolbar: [
+        //         ['style', ['style']],
+        //         ['font', ['bold', 'italic', 'underline', 'clear']],
+        //         ['fontname', ['fontname']],
+        //         ['color', ['color']],
+        //         ['para', ['ul', 'ol', 'paragraph']],
+        //         ['table', ['table']],
+        //         ['insert', ['link', 'picture', 'video']],
+        //         ['view', ['fullscreen', 'codeview', 'help']]
+        //     ]
+        // });
     </script>
 @endsection

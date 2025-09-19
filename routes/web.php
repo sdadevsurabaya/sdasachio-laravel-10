@@ -51,5 +51,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'admin'])->prefix('back/admin')->name('back.admin.')->group(function () {
     Route::resource('product', ProductController::class);
+
     Route::resource('category', CategoryController::class);
 });

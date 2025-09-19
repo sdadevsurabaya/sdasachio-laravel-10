@@ -29,7 +29,7 @@ class ProductController extends Controller
                 });
             })
             ->orderBy('order', 'asc')
-            // ->orderBy('id', 'asc')
+        // ->orderBy('id', 'asc')
             ->paginate(10);
 
         return view('back.admin.product.index', compact('products', 'search', 'categories'));
@@ -114,7 +114,21 @@ class ProductController extends Controller
                 'order'       => 'sometimes|required',
             ]);
 
-            $product->update($request->only(['name', 'sku', 'description', 'status', 'order']));
+            $description = $request->input('description');
+
+            // cek & proses base64 images
+            if ($description) {
+                $description = $this->processBase64Images($request->description, $product->id);;
+            }
+
+            $product->update([
+                'name'        => $request->input('name', $product->name),
+                'sku'         => $request->input('sku', $product->sku),
+                'description' => $description,
+                'status'      => $request->input('status', $product->status),
+                'order'       => $request->input('order', $product->order),
+            ]);
+
             return response()->json(['success' => true]);
         }
 
@@ -161,12 +175,59 @@ class ProductController extends Controller
             ->combine($request->input('feature_values', []))
             ->filter();
 
-        $productData['features'] = $features;
-        // dd($productData['features']);
+        $productData = [
+            'name'         => $request->name,
+            'category_id'  => $request->category_id,
+            'sku'          => $request->sku,
+            'download_url' => $request->download_url,
+            'status'       => $request->status,
+            'order'        => $request->order,
+            'features'     => $features,
+        ];
+
+        // proses base64 images di description
+        if ($request->filled('description')) {
+            $productData['description'] = $this->processBase64Images($request->description);
+        }
 
         $product->update($productData);
 
         return redirect()->route('back.admin.product.edit', $product->id)->with('success', 'Produk berhasil diperbarui.');
+    }
+
+    protected function processBase64Images($description, $productId)
+    {
+        return preg_replace_callback(
+            '/<img[^>]+src="([^"]+)"[^>]*>/i',
+            function ($match) use ($productId) {
+                $src = $match[1];
+
+                // hanya proses base64
+                if (strpos($src, 'data:image/') === 0) {
+                    if (preg_match('/^data:image\/([^;]+);base64,(.+)$/', $src, $imageData)) {
+                        $extension = $imageData[1]; // png, jpeg, webp
+                        $decoded   = base64_decode($imageData[2]);
+
+                        // nama file: {idProduk}_{uniqid()}.{ext}
+                        $imageName = $productId . '_' . uniqid() . '.' . $extension;
+                        $path      = public_path('uploads/' . $imageName);
+
+                        if (! file_exists(public_path('uploads'))) {
+                            mkdir(public_path('uploads'), 0777, true);
+                        }
+
+                        file_put_contents($path, $decoded);
+
+                        // return img baru tanpa atribut tambahan
+                        return '<img src="/uploads/' . $imageName . '" />';
+                    }
+                }
+
+                // kalau bukan base64, biarkan apa adanya
+                return $match[0];
+            },
+            $description
+        );
     }
 
     public function destroy(Product $product)
