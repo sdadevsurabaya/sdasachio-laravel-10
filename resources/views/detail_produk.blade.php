@@ -1,26 +1,14 @@
 @extends('layouts.layout')
 
-@section('css')
-@endsection
-
 @section('content')
     <section class="page-section">
-
-
-
-
-
-
-
-
-
         <div class="container">
             <div class="row">
                 {{-- Gambar --}}
                 @php
-                        $images = $product->images;
-                        $mainImage = $images->first();
-                    @endphp
+                    $images = $product->images;
+                    $mainImage = $images->first();
+                @endphp
                 <div class="col-md-6 {{ !$mainImage ? 'd-none' : '' }}">
 
 
@@ -71,32 +59,22 @@
                     @endif
 
                     <div class="mt-4 d-flex gap-2">
-                        <a href="{{ url('/contact?product=' . $product->name) }}" class="btn btn-primary text-white">Send Inquiry</a>
+                        <a href="{{ url('/contact?product=' . $product->name) }}" class="btn btn-primary text-white">Send
+                            Inquiry</a>
                         @if ($product->download_url)
-                            <a href="{{ $product->download_url }}" class="btn btn-dark text-white" target="_blank">Download Catalog</a>
+                            <a href="{{ $product->download_url }}" class="btn btn-dark text-white" target="_blank">Download
+                                Catalog</a>
                         @endif
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
         <div class="container">
-
             <div class="mb-3">
-
                 <div class="p-3">
                     {!! $product->description !!}
                 </div>
             </div>
-
             <a href="{{ route('back.admin.product.index') }}" class="btn btn-secondary">Kembali</a>
         </div>
     </section>
@@ -107,5 +85,9 @@
         function changeMainImage(url) {
             document.getElementById('main-image').src = url;
         }
+
+        $(function() {
+            $("img").addClass("img-fluid");
+        });
     </script>
 @endsection
